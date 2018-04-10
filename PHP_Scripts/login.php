@@ -1,0 +1,1 @@
+$fb = new Facebook\Facebook
