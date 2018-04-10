@@ -1,8 +1,9 @@
-require_once __Dir__ . '/vendor/autoload.php'
+<?php
+require_once('../vendor/autoload.php');
 
 $fb = new Facebook\Facebook([
-  'app_id' => '{216008415822363}',
-  'app_secret' => '{app-secret}',
+  'app_id' => '216008415822363',
+  'app_secret' => 'aba8ce5fc8dc5b0a72ccbec554e3f785',
   'default_graph_version' => 'v2.2',
   ]);
 
@@ -51,3 +52,4 @@ if(! $accessToken->isLongLived())
 }
 
 $_SESSION['fb_access_token'] = (string) $accessToken;
+?>
