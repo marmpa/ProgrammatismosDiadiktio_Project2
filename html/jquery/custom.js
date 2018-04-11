@@ -16,14 +16,14 @@ $(function() {
 			}
 		},
 		messages: {
-			firstname: "Το όνομά σου ξέχασες..",
+			firstname: "Το όνομά είναι υποχρεωτικό",
 			lastname: "Το επίθετο είναι υποχρεωτικό",
 			password: {
 				required: "Υποχρεωτικό πεδίο",
 				minlength: "5 χαρακτήρες τουλάχιστον"
 			},
-			email: "Βάλε και το σωστό εμαιλ σου",
-			password_match: "Δεν ταιριάζουν οι κωδικοί"
+			email: "Βάλε ένα έγκυρο εμαιλ σου",
+			password_match: "Οι κωδικοί δεν είναι ίδιοι"
 		},
 		submitHandler: function(form) {
 			form.submit();
