@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
+
+
+
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<title></title>
+
+	
+	<script type="text/javascript">
+			function whichType()
+			{
+				alert("hello");
+
+			}
+
+			function javas()
+			{
+				
+				$.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=google&prop=text&format=json&callback=?',function(json))
+					{
+						$('#wikiInfo').html(json.parse.text[*]);
+						$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
+						$('#wikiInfo').find("a").attr("target", "_blank");
+					});
+
+
+			}
+		</script>
 </head>
-<body>
+<body onload="whichType()">
 	<form action="../PHP_Scripts/login.php">
 		<input type="submit" name="click on me">
 	</form>
+
+	<div id="wikiInfo">
+
+	</div>
 </body>
 </html>
