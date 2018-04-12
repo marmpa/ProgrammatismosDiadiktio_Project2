@@ -3,51 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
-<style>
-	body {
-	margin:0;
-	padding:0;
-	color:#000;
-	background:#009933;
-	}
-
-	#container{
-	width:100%;
-	margin:0 auto;
-	}
-
-	#header {
-	background-color:#009933;
-	}
-
-	#menu {
-	background-color:#00ff90;
-	height:700px;
-	width:15%;
-	float:left;
-	}
-
-	#content {
-	background-color:#EEEEEE;
-	height:700px;
-	width:85%;
-	float:left;
-	}
-
-	#footer {
-	background-color:#009933;
-	clear:both;
-	text-align:center;
-	}
-
-	h1{
-	margin:0;
-	}
-	
-	ul {
-	padding-left:25px;
-	}
-</style>
+<link rel="stylesheet" href="css/custom.css" type="text/css">
 </head>
 	<body>
 		<div id="container">
@@ -79,7 +35,7 @@
 						<legend>Στοιχεία χρήστη</legend>
 					  Όνομα: <?php document.getElementById("write").innerHTML = window.location.search;?><br>
 					  Επίθετο:<?php echo $_GET['lname']; ?><br>
-					  Email:<?php echo $_GET['email']; ?><br>
+					  Email:<? String mail = request.getParameter('email');out.println(mail);?><br>
 
 					  <br><br>
 					  

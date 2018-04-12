@@ -1,0 +1,43 @@
+	body {
+	margin:0;
+	padding:0;
+	color:#000;
+	background:#009933;
+	}
+
+	#container{
+	width:100%;
+	margin:0 auto;
+	}
+
+	#header {
+	background-color:#009933;
+	}
+
+	#menu {
+	background-color:#00ff90;
+	height:700px;
+	width:15%;
+	float:left;
+	}
+
+	#content {
+	background-color:#EEEEEE;
+	height:700px;
+	width:85%;
+	float:left;
+	}
+
+	#footer {
+	background-color:#009933;
+	clear:both;
+	text-align:center;
+	}
+
+	h1{
+	margin:0;
+	}
+	
+	ul {
+	padding-left:25px;
+	}

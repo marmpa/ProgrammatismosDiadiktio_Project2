@@ -1,53 +1,12 @@
 <!DOCTYPE html>
+<script src="jquery/jquery-3.2.1.js"></script>
+<script src="jquery/jquery.validate.js"></script>
+<script src="jquery/custom.js"></script>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
-<style>
-	body {
-	margin:0;
-	padding:0;
-	color:#000;
-	background:#009933;
-	}
-
-	#container{
-	width:100%;
-	margin:0 auto;
-	}
-
-	#header {
-	background-color:#009933;
-	}
-
-	#menu {
-	background-color:#00ff90;
-	height:700px;
-	width:15%;
-	float:left;
-	}
-
-	#content {
-	background-color:#EEEEEE;
-	height:700px;
-	width:85%;
-	float:left;
-	}
-
-	#footer {
-	background-color:#009933;
-	clear:both;
-	text-align:center;
-	}
-
-	h1{
-	margin:0;
-	}
-	
-	ul {
-	padding-left:25px;
-	}
-</style>
+<link rel="stylesheet" href="css/custom.css" type="text/css">
 	<script type="text/javascript">
 			function whichType(event)
 			{
@@ -84,15 +43,15 @@
 					 <fieldset>
 						<legend>Προσωπικά στοιχεία:</legend>
 					  Όνομα:<br>
-					  <input type="text" name="fname"><br>
+					  <input type="text" name="fname" required><br>
 					  Επίθετο:<br>
-					  <input type="text" name="lname"><br>
+					  <input type="text" name="lname" required><br>
 					  Email:<br>
-					  <input type="email" name="email"><br>
+					  <input type="email" name="email" required><br>
 					  Κωδικός:<br>
-					  <input type="password" name="pwd"><br>
+					  <input type="password" name="pwd" required><br>
 					  Επανάληψη κωδικού:<br>
-					  <input type="password" name="pwd_match">
+					  <input type="password" name="pwd_match" required>
 					 
 
 					<br><br>
@@ -111,8 +70,5 @@
 					Hungry MILFS needs cock!! Only 100m away..
 			</div>
 		</div>
-		<script src="jquery/jquery-3.2.1.js"></script>
-		<script src="jquery/jquery.validate.js"></script>
-		<script src="jquery/custom.js"></script>
 	</body>
 </html> 
