@@ -4,6 +4,23 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script>
+	function wikiSearch(txtCountry) {
+	  var xhttp = new XMLHttpRequest();
+	  
+	  
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  document.getElementById("demo").innerHTML =
+		  this.responseText;
+		}
+	  };
+	  xhttp.open("GET", "ajax_info.txt", true);
+	  
+	  
+	  xhttp.send();
+	}
+</script>
 </head>
 	<body>
 		<div id="container">
@@ -33,7 +50,8 @@
 					 <form>
 					 <fieldset>
 						<legend>Επιλογή χώρας</legend>
-					  Όνομα χώρας:<br>
+					  Όνομα χώρας:<input type="text" name="txtCountry" required><br>
+					  <button type="button" onclick="wikiSearch(txtCountry)">Αναζήτηση στην Wikipedia</button><br>
 					  Πληροφορίες χώρας:<br>
 
 					  <br><br>
