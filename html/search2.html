@@ -4,6 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script>
+//καποιο απο τα δυο.. να το τσεκαρω!
+function criterio1() {
+var x1=document.getElementById("criterion1").value;
+var x2=document.getElementById("criterion2").value;
+alert("x1= x2=");
+if(x1==x2){
+		$("._criterion2").val(Math.floor((Math.random() * 3) + 1)).change();;
+	}
+}
+function criterio2() {
+while(document.getElementById("criterion1").value==document.getElementById("criterion2").value){
+		document.getElementById("criterion1").value=("criterion1"+Math.floor((Math.random() * 3) + 1));
+	}
+}
+</script>
 </head>
 	<body>
 		<div id="container">
@@ -33,8 +49,16 @@
 					 <form>
 					 <fieldset>
 						<legend>Επιλογή 2 χωρών:</legend>
-					  Κριτήριο 1:<br>
-					  Κριτήριο 2:<br>
+					  Κριτήριο 1:<select name="criterion1" onclick="criterio1()">					  
+					  <option value="criterion11">GDP per capita</option>
+					  <option value="criterion12">HDI (Human Development Index)</option>
+					  <option value="criterion13">Gini Coefficient</option>
+					  </select><br>
+					  Κριτήριο 2:<select name="criterion2" onselect="criterio2()">						  
+					  <option value="criterion21">GDP per capita</option>
+					  <option value="criterion22" selected>HDI (Human Development Index)</option>
+					  <option value="criterion23">Gini Coefficient</option>
+					  </select><br>
 					  </fieldset>
 					  
 					</form> 
