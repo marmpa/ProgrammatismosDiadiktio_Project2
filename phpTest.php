@@ -1,8 +1,8 @@
 <?php
 	
-	$mysqli = new mysqli('localhost','marios','ETclLl105NUvU6N9','marios');
+	$mysqli = new mysqli('localhost','jim','l9ALjFONKySHbRMT','psd_project');
 
-	$sql = "SELECT * FROM country_specs";
+	$sql = "SELECT * FROM Countries";
 
 	if(!$result = $mysqli->query($sql))
 	{
@@ -18,6 +18,10 @@
 
 	$actor = $result->fetch_assoc();
 
+	echo "Sometimes I see " . $actor['Name'] . "and i have " . $actor['GDP'];
+
+	$result->free();
+	$mysqli->close();
 
 
 	//ETclLl105NUvU6N9
@@ -39,5 +43,7 @@
 //	echo "</table>";
 
 //	mysqli_close();
+
+	//INSERT into countries values('marios','greece',100.2,100.3,100000,500000,221.570,0.866,34.3);
 
 ?>
