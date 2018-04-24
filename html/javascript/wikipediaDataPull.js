@@ -3,17 +3,18 @@ console.log(site);
 
 
 
-/*$(document).ready(function ()
+$(document).ready(function ()
 {
-$.getJSON('http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0',function(json)
+$.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=Google&prop=text&format=json&callback=?',function(json)
 	{
-		$('#wikiInfo').html(json.parse.text['*']);
-		$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
-		$('#wikiInfo').find("a").attr("target", "_blank");
+		var a = json.parse.text['*'];
+		//$('#wikiInfo').html(json.parse.text['*']);
+		//$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
+		//$('#wikiInfo').find("a").attr("target", "_blank");
 	});
 
 });
-*/
+
 
 //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0
 // original working: http://en.wikipedia.org/w/api.php?action=parse&page=google&prop=text&format=json&callback=?
