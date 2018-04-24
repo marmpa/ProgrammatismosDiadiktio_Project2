@@ -4,6 +4,43 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script>
+//καποιο απο τα δυο.. να το τσεκαρω!
+function criterio1() {
+var x1=document.getElementById("criterion1");
+var x2=document.getElementById("criterion2");
+var str1 = x1.options[x1.selectedIndex].text;
+var str2 = x2.options[x2.selectedIndex].text;
+var value1=document.getElementById("criterion2").selectedIndex;
+if(str1==str2){
+		document.getElementById("criterion2").options[value1].disabled = true;
+	}
+	else
+	{
+		document.getElementById("criterion2").options[1].disabled = false;
+		document.getElementById("criterion2").options[2].disabled = false;
+		document.getElementById("criterion2").options[3].disabled = false;
+	}
+}
+
+
+function criterio2() {
+var x1=document.getElementById("criterion1");
+var x2=document.getElementById("criterion2");
+var str1 = x1.options[x1.selectedIndex].text;
+var str2 = x2.options[x2.selectedIndex].text;
+var value1=document.getElementById("criterion1").selectedIndex;
+if(str1==str2){
+		document.getElementById("criterion1").options[value1].disabled = true;
+	}
+	else
+	{
+		document.getElementById("criterion1").options[0].disabled = false;
+		document.getElementById("criterion1").options[1].disabled = false;
+		document.getElementById("criterion1").options[2].disabled = false;
+	}
+}
+</script>
 </head>
 	<body>
 		<div id="container">
@@ -33,8 +70,16 @@
 					 <form>
 					 <fieldset>
 						<legend>Επιλογή 2 χωρών:</legend>
-					  Κριτήριο 1:<br>
-					  Κριτήριο 2:<br>
+					  Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
+					  <option value="criterion11">GDP per capita</option>
+					  <option value="criterion12">HDI (Human Development Index)</option>
+					  <option value="criterion13">Gini Coefficient</option>
+					  </select><br>
+					  Κριτήριο 2:<select id="criterion2" onchange="criterio2()">			  
+					  <option value="criterion21">GDP per capita</option>
+					  <option value="criterion22"selected>HDI (Human Development Index)</option>
+					  <option value="criterion23">Gini Coefficient</option>
+					  </select><br>
 					  </fieldset>
 					  
 					</form> 
