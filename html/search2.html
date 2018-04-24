@@ -13,14 +13,12 @@ var str1 = x1.options[x1.selectedIndex].text;
 var str2 = x2.options[x2.selectedIndex].text;
 var value1=document.getElementById("criterion2").selectedIndex;
 if(str1==str2){
-		document.getElementById("criterion2").options[value1].disabled = true;
+		do{
+			var rand=Math.floor(Math.random()*3);
+		}while(rand==value1);
+		x2.selectedIndex=rand;
 	}
-	else
-	{
-		document.getElementById("criterion2").options[1].disabled = false;
-		document.getElementById("criterion2").options[2].disabled = false;
-		document.getElementById("criterion2").options[3].disabled = false;
-	}
+
 }
 
 
@@ -31,14 +29,13 @@ var str1 = x1.options[x1.selectedIndex].text;
 var str2 = x2.options[x2.selectedIndex].text;
 var value1=document.getElementById("criterion1").selectedIndex;
 if(str1==str2){
-		document.getElementById("criterion1").options[value1].disabled = true;
+		
+		do{
+			var rand=Math.floor(Math.random()*3);
+		}while(rand==value1);
+		x1.selectedIndex=rand;
 	}
-	else
-	{
-		document.getElementById("criterion1").options[0].disabled = false;
-		document.getElementById("criterion1").options[1].disabled = false;
-		document.getElementById("criterion1").options[2].disabled = false;
-	}
+	
 }
 </script>
 </head>
