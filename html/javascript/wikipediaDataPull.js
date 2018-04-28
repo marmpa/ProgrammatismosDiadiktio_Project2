@@ -1,23 +1,86 @@
 var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0';
-console.log(site);
+			
 
 
 
 $(document).ready(function ()
 {
+	
 
-	var searchTerm = "Greece";
+	var searchTerm = "Germany";
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
-	var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles='+searchTerm+'&rvsection=0';
+	var flagUrl = "https://en.wikipedia.org/w/api.php?action=parse&page="+searchTerm+"&prop=text&format=json&callback=?";
+	var flagImg;
+
+	$.getJSON(flagUrl,function(flag)
+	{
+		var FlagPattern = /<img\salt=\"(Flag\sof\s.*)\"\ssrc=\"(.*)\"\sw/i;
+		var tempArrayFlagInfo = flag.parse.text["*"].match(FlagPattern);
+		
+		
+		flagImg = "<img src=\"https:"+tempArrayFlagInfo[2]+"\" alt=\""+tempArrayFlagInfo[1]+"\">";
+		//flagImg1 = "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/125px-Flag_of_Greece.svg.png\" + alt=\""+tempArrayFlagInfo[1]+"\">";
+		
+		console.log(flagImg);
+		$("#wikiInfo").append(flagImg+"</br>");
+		//$("#wikiInfo").append(flagImg1+"</br>");
+	});
+
+	var site = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles="+searchTerm+"&rvsection=0";
 
 $.getJSON(site,function(json)
 	{
-		wikiHTML = json.parse.text["*"];
+		
+		wikiHTML = json.query.pages;
+		var wikiString = JSON.stringify(wikiHTML);
 
-		var pattern = /Gini\s=\s\d+/i;
+		var patternGini = /Gini\s=\s((\d*\.)?\d+)/i;
+		var patternHDI = /HDI\s=\s((\d*\.)?\d+)/i;
+		var patternGDPpC = /GDP_nominal_per_capita\s=\s(\$(\d*,)?\d+)/i;
+		var patternPopulation = /population_estimate\s=\s(\{+.*\}+\s)*(((\d*),?)*)(<ref)?/i;
+		var patternArea = /area_km2\s=\s(((\d*),?)*)/i;
+		var patternCapital = /capital\s=\s\[+(\w+\s*)+\]+/i;
+		var patternCoordinates = /coordinates\s=\s\{+Coord((\|[\d*\w]*\|*){6})/i;
 
-		console.log(JSON.stringify(wikiHTML));
-		$("#wikiInfo").append(wikiHTML.match(pattern));
+
+		var splittedArray = wikiString.match(patternCoordinates)[1].split('|');
+		var coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3];
+		var coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
+		
+		//console.log(coordX+" yep "+coordY);
+
+		var patternTest = /Gini\s=\s((\d*\.)?\d+)/i;
+
+		
+
+
+		
+
+		
+
+		
+
+		console.log(wikiString.match(patternPopulation));
+		console.log(JSON.stringify(wikiHTML).match(patternGini)[1]+" Geia sou maria");
+		//console.log(JSON.stringify(wikiHTML));
+
+
+		$("#wikiInfo").append("Όνομα προτεύουσας : "+wikiString.match(patternCapital)[1]+"</br>");
+		$("#wikiInfo").append("Γεογραφικό στίγμα Χ : "+coordX+"</br>");
+		$("#wikiInfo").append("Γεογραφικό στίγμα Y : "+coordY+"</br>");
+		$("#wikiInfo").append("Έκταση : "+wikiString.match(patternArea)[1]+" km/2"+"</br>");
+		try
+		{
+			$("#wikiInfo").append("Πλυθυσμός : "+wikiString.match(patternPopulation)[2]+"</br>");
+		}
+		catch(err)
+		{
+			//$("#wikiInfo").append("Πλυθυσμός : "+wikiString.match(patternPopulation)[1]+"</br>");
+		}
+		
+		$("#wikiInfo").append("GPD per capita : "+wikiString.match(patternGDPpC)[1]+"</br>");
+		$("#wikiInfo").append("HDI : "+wikiString.match(patternHDI)[1]+"</br>");
+		$("#wikiInfo").append("Gini : "+wikiString.match(patternGini)[1]+"</br>");
 
 		//$wikiDOM = $("<document>"+wikiHTML+"</document>");
 		//$("#wikiInfo").append($wikiDOM.find('.infobox').html());
