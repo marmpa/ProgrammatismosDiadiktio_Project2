@@ -3,11 +3,9 @@ var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop
 
 
 
-$(document).ready(function ()
+function getCountryInfo(searchTerm)
 {
 	
-
-	var searchTerm = "Germany";
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
 	var flagUrl = "https://en.wikipedia.org/w/api.php?action=parse&page="+searchTerm+"&prop=text&format=json&callback=?";
 	var flagImg;
@@ -37,7 +35,7 @@ $.getJSON(site,function(json)
 		var patternGini = /Gini\s=\s((\d*\.)?\d+)/i;
 		var patternHDI = /HDI\s=\s((\d*\.)?\d+)/i;
 		var patternGDPpC = /GDP_nominal_per_capita\s=\s(\$(\d*,)?\d+)/i;
-		var patternPopulation = /population_estimate\s=\s(\{+.*\}+\s)*(((\d*),?)*)(<ref)?/i;
+		var patternPopulation = /population_estimate\s=\s(\{+.*\}+\s)*(((\d*),?)*)(<ref)?.*\|/i;
 		var patternArea = /area_km2\s=\s(((\d*),?)*)/i;
 		var patternCapital = /capital\s=\s\[+(\w+\s*)+\]+/i;
 		var patternCoordinates = /coordinates\s=\s\{+Coord((\|[\d*\w]*\|*){6})/i;
@@ -92,7 +90,7 @@ $.getJSON(site,function(json)
 		//$('#wikiInfo').find("a").attr("target", "_blank");
 	});
 
-});
+}
 
 
 //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0
