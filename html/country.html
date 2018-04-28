@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script src="jquery/jquery-3.2.1.js"></script>
+<script src="javascript/wikipediaDataPull.js"></script>
 <script>
 	function wikiSearch(txtCountry) {
 	  var xhttp = new XMLHttpRequest();
@@ -42,7 +44,8 @@
 					<li><a href="search2.html">Βάση άλλων στοιχείων</a></li>
 					</ul>
 			</div>
-
+			
+			<div id="wikiInfo">
 			<div id="content">
 					<h1>Free porn from every country in the planet</h1>
 					<p>Enjoy premium 4K videos with only 0.99$ per month</p>
@@ -51,15 +54,16 @@
 					 <fieldset>
 						<legend>Επιλογή χώρας</legend>
 					  Όνομα χώρας:<input type="text" name="txtCountry" required><br>
-					  <button type="button" onclick="wikiSearch(txtCountry)">Αναζήτηση στην Wikipedia</button><br>
+					  <button type="button" onclick="getCountryInfo(txtCountry)">Αναζήτηση στην Wikipedia</button><br>
 					  Πληροφορίες χώρας:<br>
-
+ 
 					  <br><br>
 					  <button type="button">Αποθήκευση Χώρας</button>
 					  </fieldset>
 					  
 					</form> 
 					<br>
+			</div>
 			</div>
 			<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..
