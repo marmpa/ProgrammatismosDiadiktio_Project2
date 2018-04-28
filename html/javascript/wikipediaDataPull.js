@@ -5,7 +5,9 @@ var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop
 
 function getCountryInfo(searchTerm)
 {
-	
+	document.getElementById("wikiInfo").innerHTML = "";
+
+	console.log(searchTerm + "hello");
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
 	var flagUrl = "https://en.wikipedia.org/w/api.php?action=parse&page="+searchTerm+"&prop=text&format=json&callback=?";
 	var flagImg;
