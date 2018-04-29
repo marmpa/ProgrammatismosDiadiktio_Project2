@@ -18,13 +18,13 @@
 	//$sql = "SELECT * FROM Countries";
 
 
-	if($result = $mysqli->query($sql) === 3)
+	if($result = $mysqli->query($sql) === TRUE)
 	{
 		echo "Dimiourgithike nea egrafi";
 	}
 	else
 	{
-		echo "Error " .$sql . "<br>" . $result->error;
+		echo "Error " .$sql . "<br>" . $mysqli->error;
 	}
 
 	$sql = "SELECT * FROM Countries";
