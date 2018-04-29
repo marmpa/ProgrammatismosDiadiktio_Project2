@@ -29,7 +29,13 @@
 .fb:hover {
 background:#315997;
 }
-
+fieldset {
+  padding:10px;
+  margin:10px;  
+  border:5px solid;
+  width:400px;
+  height:330px;
+  float:left;}
 </style>
 </head>
 	<body onload="whichType(event)">
@@ -58,8 +64,8 @@ background:#315997;
 					<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 
 					 <form action="profil.php" method="post">
-					 <fieldset>
-						<legend>Προσωπικά στοιχεία:</legend>
+					 <fieldset >
+						<legend style="text-align:center;">Προσωπικά στοιχεία (Register)</legend>
 					  Όνομα:<br>
 					  <div id="inName">
 					  <input type="text" name="fname" required><br>
@@ -79,15 +85,30 @@ background:#315997;
 					  <input type="radio" name="gender" value="male" checked> Άνδρας<br>
 					  <input type="radio" name="gender" value="female"> Γυναίκα<br>
 					  
-					  <div class="fb" style="float: right;">
-					  <a href="../PHP_Scripts/login.php" >
-					  Sign in with Facebook
-					  </a>
-					  </div>
-					  
 					  <br><br>
 					  
 					  <input type="submit" value="Register">
+					  
+					  </fieldset>
+					  
+					  
+					  
+					  <fieldset>
+						<legend style="text-align:center;">Είσοδος Χρήστη (Sign in)</legend>
+					  Όνομα:<br>
+					  <input type="text" name="fname_sign" required><br>
+					  Κωδικός:<br>
+					  <input type="password" name="pwd_sign"<br>
+					 
+
+					  <br><br><br><br><br><br><br><br><br><br>
+					  <br><div class="fb" style="float:right;">
+					  <a href="../PHP_Scripts/login.php" >
+					  Sign in with Facebook
+					  </a>
+					  </div><br>
+					  <input type="submit" value="Sign up">
+					  					  
 					  
 					  </fieldset>
 					  
@@ -96,7 +117,6 @@ background:#315997;
 			</div>
 			<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..
-					<br>mariooooos
 			</div>
 		</div>
 	</body>
