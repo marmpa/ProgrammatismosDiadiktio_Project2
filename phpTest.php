@@ -14,6 +14,19 @@
 	}
 
 
+	$sql = "INSERT into Countries values('Greece','Athens','tempFlag','15 30 N','75 50 E',131957,10768477,20570,0.866,43.3)";
+	//$sql = "SELECT * FROM Countries";
+
+
+	if($result = $mysqli->query($sql) === 3)
+	{
+		echo "Dimiourgithike nea egrafi";
+	}
+	else
+	{
+		echo "Error " .$sql . "<br>" . $result->error;
+	}
+
 	$sql = "SELECT * FROM Countries";
 
 	$result = $mysqli->query($sql);//Calling the query and saving the result
@@ -26,6 +39,8 @@
 		}
 	}
 
+	$result->free();
+	$mysqli->close();
 
 	
 
