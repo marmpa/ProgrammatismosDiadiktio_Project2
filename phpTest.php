@@ -22,7 +22,7 @@
 	{
 		while($row = $result->fetch_assoc())
 		{
-			echo array_values($row);
+			print_r(array_values($row));
 		}
 	}
 
