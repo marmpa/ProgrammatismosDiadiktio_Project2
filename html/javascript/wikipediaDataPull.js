@@ -1,16 +1,25 @@
 var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0';
 			
+var marios = 'gia';
+var flagImg;
 
+var coordX;
+var coordY;
 
+var request;
+
+var country_Name;
 
 function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
 
+	country_Name = searchTerm;
+
 	console.log(searchTerm + "hello");
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
 	var flagUrl = "https://en.wikipedia.org/w/api.php?action=parse&page="+searchTerm+"&prop=text&format=json&callback=?";
-	var flagImg;
+	
 
 	$.getJSON(flagUrl,function(flag)
 	{
@@ -30,6 +39,7 @@ function getCountryInfo(searchTerm)
 
 $.getJSON(site,function(json)
 	{
+		marios = 'tiropita';
 		
 		wikiHTML = json.query.pages;
 		var wikiString = JSON.stringify(wikiHTML);
@@ -44,8 +54,8 @@ $.getJSON(site,function(json)
 
 
 		var splittedArray = wikiString.match(patternCoordinates)[1].split('|');
-		var coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3];
-		var coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
+		coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3];
+		coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
 		
 		//console.log(coordX+" yep "+coordY);
 
@@ -53,7 +63,7 @@ $.getJSON(site,function(json)
 
 		
 
-
+		
 		
 
 		
@@ -90,8 +100,63 @@ $.getJSON(site,function(json)
 		//$('#wikiInfo').html(json.parse.text['*']);
 		//$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
 		//$('#wikiInfo').find("a").attr("target", "_blank");
+
+
 	});
 
+}
+
+function InsertToDB()
+{
+	event.preventDefault();
+
+		if(request)
+		{
+			request.abort();
+		}
+
+		var $form = $(this);
+
+		//var $inputs = $form.find("input, select, button, textarea");
+
+		//var serializedData = $form.serialize();
+
+		//$inputs.prop("disabled",true);
+
+		request = $.ajax(
+			{
+				url: 'sql_php/DatabaseControlFunctions.php',
+				type: 'POST',
+				data : {coordX : coordX,coordY:coordY, country_Name:country_Name},
+					success: function(result) {
+            alert(result);
+        }
+			}
+
+		);
+
+
+		request.done(function(response,textStatus,jqXHR)
+			{
+				console.log("Nai leitourgei");
+			}
+		);
+
+		request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        	console.error(
+            	"The following error occurred: "+
+            	textStatus, errorThrown
+        	);
+    	});
+
+
+
+		request.always(function ()
+			{
+		//		$inputs.prop("disabled",false);
+			}
+		);
 }
 
 
