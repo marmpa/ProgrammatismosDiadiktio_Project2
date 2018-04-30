@@ -6,6 +6,8 @@ var flagImg;
 var coordX;
 var coordY;
 
+var request;
+
 function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
@@ -115,13 +117,16 @@ function InsertToDB()
 
 		//var serializedData = $form.serialize();
 
-		$inputs.prop("disabled",true);
+		//$inputs.prop("disabled",true);
 
 		request = $.ajax(
 			{
-				url: "/DatabaseControlFunctions.php",
-				type: "post",
-				data : {'coordX' : coordX,'coordY':coordY};
+				url: 'sql_php/DatabaseControlFunctions.php',
+				type: 'POST',
+				data : {coordX : coordX,coordY:coordY},
+					success: function(result) {
+            alert(result);
+        }
 			}
 
 		);
@@ -145,7 +150,7 @@ function InsertToDB()
 
 		request.always(function ()
 			{
-				$inputs.prop("disabled",false);
+		//		$inputs.prop("disabled",false);
 			}
 		);
 }
