@@ -8,9 +8,13 @@ var coordY;
 
 var request;
 
+var country_Name;
+
 function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
+
+	country_Name = searchTerm;
 
 	console.log(searchTerm + "hello");
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
@@ -59,7 +63,7 @@ $.getJSON(site,function(json)
 
 		
 
-
+		
 		
 
 		
@@ -123,7 +127,7 @@ function InsertToDB()
 			{
 				url: 'sql_php/DatabaseControlFunctions.php',
 				type: 'POST',
-				data : {coordX : coordX,coordY:coordY},
+				data : {coordX : coordX,coordY:coordY, country_Name:country_Name},
 					success: function(result) {
             alert(result);
         }

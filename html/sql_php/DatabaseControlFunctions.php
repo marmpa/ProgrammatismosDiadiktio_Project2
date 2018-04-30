@@ -17,7 +17,7 @@ $functionData = 'coordX';
 	}
 
 
-	$sql = "INSERT into Countries values('Austria','Athens','tempFlag','". $_POST[$functionData]."','75 50 E',131957,10768477,20570,0.866,43.3)";
+	$sql = "INSERT into Countries values('".$_POST['country_Name']."','Athens','tempFlag','". $_POST[$functionData]."','75 50 E',131957,10768477,20570,0.866,43.3)";
 	//$sql = "SELECT * FROM Countries";
 
 
