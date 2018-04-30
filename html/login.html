@@ -33,8 +33,7 @@ fieldset {
   padding:10px;
   margin:10px;  
   border:5px solid;
-  width:400px;
-  height:330px;
+  width:29%;
   float:left;}
 </style>
 </head>
@@ -45,13 +44,11 @@ fieldset {
 			</div>
 			<div id="menu">
 					<b>Menu</b>
-					<br>
-					<a href="login.html">Σύνδεση</a>
-					<br>
-					<a href="profil.php">Προφίλ</a>
-					<br>
-					<a href="country.html">Επιλογή χώρας</a>
-					<br><br>
+					<ul>
+					<li><a href="login.html">Σύνδεση</a></li>
+					<li><a href="profil.php">Προφίλ</a></li>
+					<li><a href="country.html">Επιλογή χώρας</a></li>
+					</ul>
 					<b>Ομαδοποιήσεις</b>
 					<ul>
 					<li><a href="search1.html">Βάση γεωργαφικής περιοχής</a></li>
@@ -75,7 +72,7 @@ fieldset {
 					  Email:<br>
 					  <input type="email" name="email" required><br>
 					  Κωδικός:<br>
-					  <input type="password" name="pwd" pattern="(?=(?:\D*\d){2})(?=.*[A-Z]{2})(?=.*\W+).{6,8}" required><br>
+					  <input type="password" name="pwd" pattern="(?=(?:\D*\d){2})(?=.*[A-Z]{2})(?=.*\W+).{6,8}" title="6-8 χαρακτήρες με τουλάχιστον 2 κεφαλαία,2 αριθμούς και 1 σύμβολο" required ><br>
 					  Επανάληψη κωδικού:<br>
 					  <input type="password" name="pwd_match" required>
 					 
@@ -91,12 +88,12 @@ fieldset {
 					  
 					  </fieldset>
 					  
-					  
-					  
+					</form>   
+					<form action="profil.php" method="post">  
 					  <fieldset>
 						<legend style="text-align:center;">Είσοδος Χρήστη (Sign in)</legend>
-					  Όνομα:<br>
-					  <input type="text" name="fname_sign" required><br>
+					  Email:<br>
+					  <input type="email" name="email_sign" required><br>
 					  Κωδικός:<br>
 					  <input type="password" name="pwd_sign"<br>
 					 
@@ -107,12 +104,12 @@ fieldset {
 					  Sign in with Facebook
 					  </a>
 					  </div><br>
-					  <input type="submit" value="Sign up">
+					  <input type="submit" value="Sign in">
 					  					  
 					  
 					  </fieldset>
-					  
 					</form> 
+					
 					<br>
 			</div>
 			<div id="footer">
