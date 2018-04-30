@@ -1,11 +1,13 @@
 <?php
-	$functionData = 'tempFunction'; 
-	if(issett($_POST[$functionData]) && !empty($_POST['tempFunction']))
+	$functionData = 'coordX'; 
+	if(issett($_POST[$functionData]) && !empty($_POST['coordX']))
 	{
-		$function2Call = $_POST[$functionData]
+		$function2Call = 'a'; //$_POST[$functionData]
 		switch ($function2Call) {
-			case 'functions1':
-				# code...
+			case 'a':
+				echo '<script language="javascript">';
+				echo 'alert("message $_POST[$functionData] sent")';
+				echo '</script>';
 				break;
 			
 			default:
