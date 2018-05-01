@@ -71,7 +71,6 @@ $.getJSON(site,function(json)
 		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
 		countryDictionary.HDI = wikiString.match(patternHDI)[1];
 		countryDictionary.gini = wikiString.match(patternGini)[1];
-		
 
 		
 

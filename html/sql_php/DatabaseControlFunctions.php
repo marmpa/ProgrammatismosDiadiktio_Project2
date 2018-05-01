@@ -2,7 +2,7 @@
 $functionData = 'gini'; 
 	function InsertData()
 	{
-		$functionData = 'coordX'; 
+		$functionData = 'gini'; 
 		$serverName = 'localhost';
 		$userName = 'jim';
 		$password = 'l9ALjFONKySHbRMT';
@@ -16,8 +16,9 @@ $functionData = 'gini';
 		die("Connection failed: " . $mysqli->connect_error);
 	}
 
+	echo (str_replace("$","",$_POST['GPD']));
 
-	$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".$_POST['area'].",".$_POST['population'].",".$_POST['GPD'].",".$_POST['HDI'].",".$_POST['gini'].")";
+	$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".intval($_POST['area']).",".floatval($_POST['population']).",".floatval(str_replace("$","",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
 	//$sql = "SELECT * FROM Countries";
 
 
@@ -95,14 +96,11 @@ $functionData = 'gini';
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
 	{
 		$function2Call = $_POST[$functionData];
-		switch ($function2Call) {
-			case 'gini':
-				InsertData();
-				break;
-			
-			default:
-				# code...
-				break;
+		echo $function2Call;
+		
+		if(is_numeric($function2Call))
+		{
+			InsertData();
 		}
 	}
 ?>
