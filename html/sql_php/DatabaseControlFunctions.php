@@ -1,12 +1,12 @@
 <?php
-$functionData = 'coordX'; 
+$functionData = 'gini'; 
 	function InsertData()
 	{
 		$functionData = 'coordX'; 
 		$serverName = 'localhost';
-	$userName = 'jim';
-	$password = 'l9ALjFONKySHbRMT';
-	$dbname = 'psd_project';
+		$userName = 'jim';
+		$password = 'l9ALjFONKySHbRMT';
+		$dbname = 'psd_project';
 
 
 	$mysqli = new mysqli($serverName,$userName,$password,$dbname);
@@ -17,7 +17,7 @@ $functionData = 'coordX';
 	}
 
 
-	$sql = "INSERT into Countries values('".$_POST['country_Name']."','Athens','tempFlag','". $_POST[$functionData]."','75 50 E',131957,10768477,20570,0.866,43.3)";
+	$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".$_POST['area'].",".$_POST['population'].",".$_POST['GPD'].",".$_POST['HDI'].",".$_POST['gini'].")";
 	//$sql = "SELECT * FROM Countries";
 
 
@@ -30,7 +30,7 @@ $functionData = 'coordX';
 		echo "Error " .$sql . "<br>" . $mysqli->error;
 	}
 
-	$sql = "SELECT * FROM Countries";
+	$sql = "SELECT * FROM Countries where Country_Name=".$_POST['countryName']."";
 
 	$result = $mysqli->query($sql);//Calling the query and saving the result
 
@@ -91,14 +91,12 @@ $functionData = 'coordX';
 	}
 
 	
-	echo '<script language="javascript">';
-				echo 'alert("message gia sent")';
-				echo '</script>';
-	if(isset($_POST[$functionData]) && !empty($_POST['coordX']))
+	
+	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
 	{
-		$function2Call = 'a'; //$_POST[$functionData]
+		$function2Call = $_POST[$functionData];
 		switch ($function2Call) {
-			case 'a':
+			case 'gini':
 				InsertData();
 				break;
 			

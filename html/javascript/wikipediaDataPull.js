@@ -3,6 +3,8 @@ var site = 'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop
 var marios = 'gia';
 var flagImg;
 
+var countryDictionary={};
+
 var coordX;
 var coordY;
 
@@ -14,7 +16,7 @@ function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
 
-	country_Name = searchTerm;
+	countryDictionary.countryName = searchTerm;
 
 	console.log(searchTerm + "hello");
 	var url="http://en.wikipedia.org/w/api.php?action=parse&format=json&page=" + searchTerm+"&redirects&prop=text&callback=?";
@@ -39,7 +41,7 @@ function getCountryInfo(searchTerm)
 
 $.getJSON(site,function(json)
 	{
-		marios = 'tiropita';
+		
 		
 		wikiHTML = json.query.pages;
 		var wikiString = JSON.stringify(wikiHTML);
@@ -54,18 +56,21 @@ $.getJSON(site,function(json)
 
 
 		var splittedArray = wikiString.match(patternCoordinates)[1].split('|');
-		coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3];
-		coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
+		
+		
 		
 		//console.log(coordX+" yep "+coordY);
 
 		var patternTest = /Gini\s=\s((\d*\.)?\d+)/i;
 
-		
-
-		
-		
-
+		countryDictionary.coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3]; 
+		countryDictionary.coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
+		countryDictionary.capitalName = wikiString.match(patternCapital)[1];
+		countryDictionary.area = wikiString.match(patternArea)[1];
+		countryDictionary.population = wikiString.match(patternPopulation)[2];
+		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
+		countryDictionary.HDI = wikiString.match(patternHDI)[1];
+		countryDictionary.gini = wikiString.match(patternGini)[1];
 		
 
 		
@@ -75,22 +80,22 @@ $.getJSON(site,function(json)
 		//console.log(JSON.stringify(wikiHTML));
 
 
-		$("#wikiInfo").append("Όνομα προτεύουσας : "+wikiString.match(patternCapital)[1]+"</br>");
-		$("#wikiInfo").append("Γεογραφικό στίγμα Χ : "+coordX+"</br>");
-		$("#wikiInfo").append("Γεογραφικό στίγμα Y : "+coordY+"</br>");
-		$("#wikiInfo").append("Έκταση : "+wikiString.match(patternArea)[1]+" km/2"+"</br>");
+		$("#wikiInfo").append("Όνομα προτεύουσας : "+countryDictionary.capitalName+"</br>");
+		$("#wikiInfo").append("Γεογραφικό στίγμα Χ : "+countryDictionary.coordX+"</br>");
+		$("#wikiInfo").append("Γεογραφικό στίγμα Y : "+countryDictionary.coordY+"</br>");
+		$("#wikiInfo").append("Έκταση : "+countryDictionary.area+" km/2"+"</br>");
 		try
 		{
-			$("#wikiInfo").append("Πλυθυσμός : "+wikiString.match(patternPopulation)[2]+"</br>");
+			$("#wikiInfo").append("Πλυθυσμός : "+countryDictionary.population+"</br>");
 		}
 		catch(err)
 		{
 			//$("#wikiInfo").append("Πλυθυσμός : "+wikiString.match(patternPopulation)[1]+"</br>");
 		}
 		
-		$("#wikiInfo").append("GPD per capita : "+wikiString.match(patternGDPpC)[1]+"</br>");
-		$("#wikiInfo").append("HDI : "+wikiString.match(patternHDI)[1]+"</br>");
-		$("#wikiInfo").append("Gini : "+wikiString.match(patternGini)[1]+"</br>");
+		$("#wikiInfo").append("GPD per capita : "+countryDictionary.GPD+"</br>");
+		$("#wikiInfo").append("HDI : "+countryDictionary.HDI+"</br>");
+		$("#wikiInfo").append("Gini : "+countryDictionary.gini+"</br>");
 
 		//$wikiDOM = $("<document>"+wikiHTML+"</document>");
 		//$("#wikiInfo").append($wikiDOM.find('.infobox').html());
@@ -115,7 +120,12 @@ function InsertToDB()
 			request.abort();
 		}
 
-		var $form = $(this);
+		if(!("gini" in countryDictionary))
+		{
+			return;
+		}
+
+		//var $form = $(this);
 
 		//var $inputs = $form.find("input, select, button, textarea");
 
@@ -127,7 +137,7 @@ function InsertToDB()
 			{
 				url: 'sql_php/DatabaseControlFunctions.php',
 				type: 'POST',
-				data : {coordX : coordX,coordY:coordY, country_Name:country_Name},
+				data : countryDictionary,
 					success: function(result) {
             alert(result);
         }
