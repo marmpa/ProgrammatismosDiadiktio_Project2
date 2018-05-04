@@ -7,13 +7,26 @@
 	<link rel="stylesheet" href="css/custom.css" type="text/css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {
+	google.charts.load('current', {
         'packages':['geochart'],
         // Note: you will need to get a mapsApiKey for your project.
         // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
+	  google.charts.load('current', {'packages':['corechart']});
+	function chartCreate(){	
+	var value=document.getElementById("charts").selectedIndex;
+      
+	  if(value==0){
       google.charts.setOnLoadCallback(drawRegionsMap);
+	  }
+	  else if(value==1){
+	  google.charts.setOnLoadCallback(drawChart);
+	  }
+	  else{
+	  google.charts.setOnLoadCallback(drawPie);
+	  }
+	  
 
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
@@ -32,13 +45,54 @@
         datalessRegionColor: '#ffffb3',
 		colors: ['#f6c7b6', '#e0440e']};
 
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        var chart1 = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-        chart.draw(data, options);
+        chart1.draw(data, options);
       }
+	  function drawPie() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('regions_div'));
+        chart2.draw(data, options);
+      }
+	  function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Weight'],
+          [ 8,      12],
+          [ 4,      5.5],
+          [ 11,     14],
+          [ 4,      5],
+          [ 3,      3.5],
+          [ 6.5,    7]
+        ]);
+
+        var options = {
+          title: 'Age vs. Weight comparison',
+          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+          legend: 'none'
+        };
+
+        var chart3 = new google.visualization.ScatterChart(document.getElementById('regions_div'));
+
+        chart3.draw(data, options);
+      }
+	  }
     </script>
   </head>
-  <body>
+  <body >
 		<div id="header">
 			<h1>Pornhub</h1>
 		</div>
@@ -59,7 +113,19 @@
 		<div id="content">
 				<h1>Free porn from every country in the planet</h1>
 				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
-		<div id="regions_div" style="width: 100%; height: 87.5%;"></div>
+				Κριτήρια:<select id="crit">
+				<option value="crit1">Έκταση (σε τετραγωνικά χιλιόμετρα)</option>
+				<option value="crit2">Πληθυσμός</option>
+				<option value="crit3">GDP per capita</option>
+				<option value="crit4">HDI(Human Development Index) </option>
+				<option value="crit5">Gini Coefficient</option>			
+				</select><br>
+				Γράφημα:<select id="charts" onchange="chartCreate()">
+				<option value="chart1">Geo Chart</option>
+				<option value="chart2">Scatter Chart</option>
+				<option value="chart3">Pie Chart</option>
+				</select><br>
+				<div id="regions_div" style="width: 100%; height: 80%;"></div>
 		</div>
 		<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..
