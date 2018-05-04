@@ -4,6 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script>
+function insertcountries(){
+        select1 = document.getElementById(center1);
+		select2 = document.getElementById(center2);
+
+        for (var i = 0; i<=max; i++){
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = i;
+            select1.add(option);
+			select2.add(option);
+        }
+		}
+</script>
 </head>
 	<body>
 		<div id="container">
@@ -32,11 +46,11 @@
 					 <form>
 					 <fieldset>
 						<legend>Επιλογή 2 χωρών:</legend>
-					  Κέντρο 1:<select name="center1">
+					  Κέντρο 1:<select id="center1">
 					  <option value="counter1">Αθήνα</option>
 					  </select><br>
 					  
-					  Κέντρο 2:<select name="center2">
+					  Κέντρο 2:<select id="center2">
 					  <option value="counter2">Παρίσι</option>
 					  </select><br>
 					  </fieldset>
