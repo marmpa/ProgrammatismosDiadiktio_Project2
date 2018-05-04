@@ -1,6 +1,6 @@
 <?php
-	$functionData = 'gini'; 
-	$functionData = 'gini'; 
+	//phpinfo();
+	$functionData = 'gini';  
 	$serverName = 'localhost';
 	$userName = 'jim';
 	$password = 'l9ALjFONKySHbRMT';
@@ -8,7 +8,11 @@
 	function InsertData()
 	{
 		
-
+			$functionData = 'gini';  
+	$serverName = 'localhost';
+	$userName = 'jim';
+	$password = 'l9ALjFONKySHbRMT';
+	$dbname = 'psd_project';
 
 	$mysqli = new mysqli($serverName,$userName,$password,$dbname);
 
@@ -94,6 +98,11 @@
 
 	function GetCountriesInDB()
 	{
+			$functionData = 'gini';  
+	$serverName = 'localhost';
+	$userName = 'jim';
+	$password = 'l9ALjFONKySHbRMT';
+	$dbname = 'psd_project';
 		
 		$mysqli = new mysqli($serverName,$userName,$password,$dbname);
 
@@ -104,19 +113,26 @@
 
 		$sql = "SELECT Country_Name FROM Countries";
 
-		$result = $mysqli->query($sql);//Calling the query and saving the result
-
-		if($result->num_rows > 0)
+		if($stmt = $mysqli->prepare($sql))
 		{
-			$countryArray = Array();
-			while($row = $result->fetch_assoc())
-			{
-				countryArray[] = $row['Country_Name'];
-			}
+			$stmt->bind_result($Country_Name);
+			$stmt->execute();
 		}
 
-		$result->free();
+		$row = null;
+		$countryArray = Array();
+		while($stmt->fetch())
+		{
+			$countryArray[] = $Country_Name;
+		}
+
+		$json_array = json_encode($countryArray);
+		
+
+		//$result->free();
 		$mysqli->close();
+
+		echo $json_array;
 	}
 
 	
@@ -124,11 +140,17 @@
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
 	{
 		$function2Call = $_POST[$functionData];
-		echo $function2Call;
+		//echo $function2Call;
 		
-		if(is_numeric($function2Call))
+		if(is_numeric($function2Call) && !isset($_POST['type']))
 		{
+			echo "called yes";
 			InsertData();
+		}
+		else
+		{
+			
+			GetCountriesInDB();
 		}
 	}
 ?>

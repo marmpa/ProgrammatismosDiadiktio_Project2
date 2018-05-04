@@ -138,9 +138,10 @@ function InsertToDB()
 				url: 'sql_php/DatabaseControlFunctions.php',
 				type: 'POST',
 				data : countryDictionary,
-					success: function(result) {
-            alert(result);
-        }
+					success: function(result) 
+					{
+            			alert(result);
+        			}
 			}
 
 		);
@@ -168,6 +169,70 @@ function InsertToDB()
 			}
 		);
 }
+
+function GetCountryNames()
+{
+		if(request)
+		{
+			request.abort();
+		}
+
+		
+
+		//var $form = $(this);
+
+		//var $inputs = $form.find("input, select, button, textarea");
+
+		//var serializedData = $form.serialize();
+
+		//$inputs.prop("disabled",true);
+
+		cc = {};
+		cc.gini = 5;
+		cc.type = 3;
+
+
+		request = $.ajax(
+			{
+				url: 'sql_php/DatabaseControlFunctions.php',
+				type: 'POST',
+				data : cc,
+					success: function(result) 
+					{
+            			
+            			//var arrayObj = <?php echo $json_array; ?>
+            			var Country_Names = result;
+            			console.log(Country_Names);
+       				 },
+       				 dataType:"json"
+			}
+
+		);
+
+
+		request.done(function(response,textStatus,jqXHR)
+			{
+				console.log("Nai leitourgei");
+			}
+		);
+
+		request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        	console.error(
+            	"The following error occurred: "+
+            	textStatus, errorThrown
+        	);
+    	});
+
+
+
+		request.always(function ()
+			{
+		//		$inputs.prop("disabled",false);
+			}
+		);
+}
+
 
 //Onoma tis xoras epistrofi se sinartisi se pinaka
 
