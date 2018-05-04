@@ -4,22 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script src="jquery/jquery-3.2.1.js"></script>
+<script src="javascript/wikipediaDataPull.js"></script>
 <script>
 function insertcountries(){
         select1 = document.getElementById(center1);
 		select2 = document.getElementById(center2);
-
-        for (var i = 0; i<=max; i++){
+		GetCountryNames();
+        for (var i = 0; i<=Country_Names.lenght; i++){
             var option = document.createElement('option');
             option.value = i;
-            option.innerHTML = i;
+            option.text = Country_Names[i];
             select1.add(option);
 			select2.add(option);
         }
 		}
 </script>
 </head>
-	<body>
+	<body onload="insertcountries()">
 		<div id="container">
 			<div id="header">
 				<h1>Pornhub</h1>
@@ -47,11 +49,9 @@ function insertcountries(){
 					 <fieldset>
 						<legend>Επιλογή 2 χωρών:</legend>
 					  Κέντρο 1:<select id="center1">
-					  <option value="counter1">Αθήνα</option>
 					  </select><br>
 					  
 					  Κέντρο 2:<select id="center2">
-					  <option value="counter2">Παρίσι</option>
 					  </select><br>
 					  </fieldset>
 					  
