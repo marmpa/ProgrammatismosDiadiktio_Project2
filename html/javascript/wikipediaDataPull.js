@@ -49,7 +49,8 @@ $.getJSON(site,function(json)
 		var patternGini = /Gini\s=\s((\d*\.)?\d+)/i;
 		var patternHDI = /HDI\s=\s((\d*\.)?\d+)/i;
 		var patternGDPpC = /GDP_nominal_per_capita\s=\s(\$(\d*,)?\d+)/i;
-		var patternPopulation = /population_estimate\s=\s(\{+.*\}+\s)*(((\d*),?)*)(<ref)?.*\|/i;
+		var patternPopulation =/population_estimate\s=\s({{increase}}\s)?([\d,]*)(\s{{increase}})?/i;
+		var patternPopulationOld = /population_estimate\s=(\s{{.*}})?\s([\d,]*)(<ref.+?\sweb)?\s*\|/i;
 		var patternArea = /area_km2\s=\s(((\d*),?)*)/i;
 		var patternCapital = /capital\s=\s\[+(\w+\s*)+\]+/i;
 		var patternCoordinates = /coordinates\s=\s\{+Coord((\|[\d*\w]*\|*){6})/i;
@@ -74,7 +75,7 @@ $.getJSON(site,function(json)
 
 		
 
-		console.log(wikiString.match(patternPopulation));
+		console.log(countryDictionary.population);
 		console.log(JSON.stringify(wikiHTML).match(patternGini)[1]+" Geia sou maria");
 		//console.log(JSON.stringify(wikiHTML));
 
@@ -167,6 +168,8 @@ function InsertToDB()
 			}
 		);
 }
+
+//Onoma tis xoras epistrofi se sinartisi se pinaka
 
 
 //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0
