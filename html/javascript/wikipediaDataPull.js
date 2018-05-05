@@ -172,6 +172,7 @@ function InsertToDB()
 
 function GetCountryNames()
 {
+	//var Country_Names = Array();
 		if(request)
 		{
 			request.abort();
@@ -201,7 +202,7 @@ function GetCountryNames()
 					{
             			
             			//var arrayObj = <?php echo $json_array; ?>
-            			var Country_Names = result;
+            			Country_Names = result;
             			console.log(Country_Names);
        				 },
        				 dataType:"json"
@@ -210,11 +211,12 @@ function GetCountryNames()
 		);
 
 
-		request.done(function(response,textStatus,jqXHR)
+		var Country_Names = request.done(function(response,textStatus,jqXHR)
 			{
-				console.log("Nai leitourgei");
+				insertcountries(Country_Names);
 			}
 		);
+		console.log(Country_Names.responseJSON);
 
 		request.fail(function (jqXHR, textStatus, errorThrown){
         // Log the error to the console
@@ -231,6 +233,8 @@ function GetCountryNames()
 		//		$inputs.prop("disabled",false);
 			}
 		);
+
+		return Country_Names;
 }
 
 

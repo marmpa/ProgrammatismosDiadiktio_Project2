@@ -4,24 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
-<script src="jquery/jquery-3.2.1.js"></script>
-<script src="javascript/wikipediaDataPull.js"></script>
-<script>
-function insertcountries(){
-        select1 = document.getElementById(center1);
-		select2 = document.getElementById(center2);
-		GetCountryNames();
-        for (var i = 0; i<=Country_Names.lenght; i++){
-            var option = document.createElement('option');
-            option.value = i;
-            option.text = Country_Names[i];
-            select1.add(option);
-			select2.add(option);
-        }
-		}
-</script>
+
 </head>
-	<body onload="insertcountries()">
+	<body onload="GetCountryNames()">
 		<div id="container">
 			<div id="header">
 				<h1>Pornhub</h1>
@@ -61,6 +46,38 @@ function insertcountries(){
 			<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..
 			</div>
+			
 		</div>
 	</body>
+
+
 </html> 
+
+<script src="jquery/jquery-3.2.1.js"></script>
+
+<script>
+function insertcountries(tmpArray)
+	{
+        select1 = document.getElementById("center1");
+		select2 = document.getElementById("center2");
+		var Country_Names = tmpArray;
+
+
+
+		console.log(Country_Names);
+        for (var i = 0; i<Country_Names.length; i++)
+        {
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = Country_Names[i];
+            select1.add(option);
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = Country_Names[i];
+			select2.add(option);
+
+
+        }
+	}
+</script>
+<script src="javascript/wikipediaDataPull.js"></script>
