@@ -91,6 +91,13 @@
       }
 	  }
     </script>
+	<style>
+	.scrollabletextbox {
+    height:8%;
+    width:100%;
+    overflow:scroll;
+	}
+	</style>
   </head>
   <body >
 		<div id="header">
@@ -113,6 +120,9 @@
 		<div id="content">
 				<h1>Free porn from every country in the planet</h1>
 				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
+				Χώρες<br>
+				<textarea class="scrollabletextbox" name="countryList">
+				</textarea><br>
 				Κριτήρια:<select id="crit">
 				<option value="crit1">Έκταση (σε τετραγωνικά χιλιόμετρα)</option>
 				<option value="crit2">Πληθυσμός</option>
@@ -132,3 +142,29 @@
 		</div>
   </body>
 </html>
+<script src="jquery/jquery-3.2.1.js"></script>
+<script>
+function insertcountries(tmpArray)
+	{
+        select1 = document.getElementById("navbar");
+		var Country_Names = tmpArray;
+
+
+
+		console.log(Country_Names);
+        for (var i = 0; i<Country_Names.length; i++)
+        {
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = Country_Names[i];
+            select1.add(option);
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = Country_Names[i];
+			select2.add(option);
+
+
+        }
+	}
+</script>
+<script src="javascript/wikipediaDataPull.js"></script>
