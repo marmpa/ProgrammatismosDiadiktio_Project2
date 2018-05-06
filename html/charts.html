@@ -16,7 +16,8 @@
 	  google.charts.load('current', {'packages':['corechart']});
 	function chartCreate(){	
 	var value=document.getElementById("charts").selectedIndex;
-      
+    var feature=document.getElementById("crit").selectedIndex;
+	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
 	  if(value==0){
       google.charts.setOnLoadCallback(drawRegionsMap);
 	  }
