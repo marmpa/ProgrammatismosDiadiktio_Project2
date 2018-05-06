@@ -244,7 +244,7 @@ function GetCountryAndFeatures()
 		request.abort();
 	}
 
-	
+
 
 	dataV = {};
 	dataV.typeValue = "temp";
@@ -252,6 +252,7 @@ function GetCountryAndFeatures()
 	var answer = $.ajax(
 	{
 		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
 		dataType:"json",
 		data:dataV,
 		async:false,
