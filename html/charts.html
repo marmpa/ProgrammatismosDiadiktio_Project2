@@ -50,14 +50,29 @@
         chart1.draw(data, options);
       }
 	  function drawPie() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+        var data = google.visualization.arrayToDataTable;
+         data.addColumn('string', 'countryName');
+		 data.addColumn('number', 'countryFeature');
+		 data.addRows([
+			  
+		<%
+			while ( rs.next())
+			{
+
+				if ( rs.isLast())
+				{
+					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"]");
+				}
+				else
+				{
+					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"],");
+				}
+					
+			}
+			rs.close();
+			con.close();
+		%>
+		]);
 
         var options = {
           title: 'My Daily Activities',
@@ -68,15 +83,29 @@
         chart2.draw(data, options);
       }
 	  function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Age', 'Weight'],
-          [ 8,      12],
-          [ 4,      5.5],
-          [ 11,     14],
-          [ 4,      5],
-          [ 3,      3.5],
-          [ 6.5,    7]
-        ]);
+        var data = google.visualization.arrayToDataTable;
+        data.addColumn('string', 'countryName');
+		data.addColumn('number', 'countryFeature');
+		data.addRows([
+			  
+		<%
+			while ( rs.next())
+			{
+
+				if ( rs.isLast())
+				{
+					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"]");
+				}
+				else
+				{
+					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"],");
+				}
+					
+			}
+			rs.close();
+			con.close();
+		%>
+		]);
 
         var options = {
           title: 'Age vs. Weight comparison',
@@ -162,8 +191,9 @@ function insertcountries(tmpArray)
 			var CD = document.getElementById("CheckDiv");
             var checkbox = document.createElement('input');
 			checkbox.setAttribute("type", "checkbox");
-			checkbox.setAttribute("name", i);
-			checkbox.setAttribute("value", Country_Names[i]);
+			checkbox.setAttribute("id", i);
+			checkbox.setAttribute("value", Country_Names[i]+'<br/>');
+			
 			CD.appendChild(checkbox); 
         }
 	}
