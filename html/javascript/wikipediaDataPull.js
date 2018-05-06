@@ -237,6 +237,29 @@ function GetCountryNames()
 		return Country_Names;
 }
 
+function GetCountryAndFeatures()
+{
+	if(request)
+	{
+		request.abort();
+	}
+
+	
+
+	dataV = {};
+	dataV.typeValue = "temp";
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		dataType:"json",
+		data:dataV,
+		async:false,
+	}).responseText;
+
+	return answer;
+}
+
 
 //Onoma tis xoras epistrofi se sinartisi se pinaka
 

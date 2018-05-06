@@ -99,10 +99,10 @@
 	function GetCountriesInDB()
 	{
 			$functionData = 'gini';  
-	$serverName = 'localhost';
-	$userName = 'jim';
-	$password = 'l9ALjFONKySHbRMT';
-	$dbname = 'psd_project';
+			$serverName = 'localhost';
+			$userName = 'jim';
+			$password = 'l9ALjFONKySHbRMT';
+			$dbname = 'psd_project';
 		
 		$mysqli = new mysqli($serverName,$userName,$password,$dbname);
 
@@ -116,6 +116,45 @@
 		if($stmt = $mysqli->prepare($sql))
 		{
 			$stmt->bind_result($Country_Name);
+			$stmt->execute();
+		}
+
+		$row = null;
+		$countryArray = Array();
+		while($stmt->fetch())
+		{
+			$countryArray[] = $Country_Name;
+		}
+
+		$json_array = json_encode($countryArray);
+		
+
+		//$result->free();
+		$mysqli->close();
+
+		echo $json_array;
+	}
+
+	function GetCountriesAndCorrespondingValues()
+	{
+		$functionData = 'gini';  
+		$serverName = 'localhost';
+		$userName = 'jim';
+		$password = 'l9ALjFONKySHbRMT';
+		$dbname = 'psd_project';
+		
+		$mysqli = new mysqli($serverName,$userName,$password,$dbname);
+
+		if($mysqli->connect_error)
+		{
+			die("Connection failed: " . $mysqli->connect_error);
+		}
+
+		$sql = "SELECT Country_Name ".$_POST['typeValue']." FROM Countries";
+
+		if($stmt = $mysqli->prepare($sql))
+		{
+			$stmt->bind_result($Country_Name,$typeValue);
 			$stmt->execute();
 		}
 
