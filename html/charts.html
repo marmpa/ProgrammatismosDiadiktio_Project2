@@ -50,9 +50,10 @@
 
         chart1.draw(data, options);
       }
-	  function drawPie() {
+	  function drawPie() 
+	  {
         var data = google.visualization.arrayToDataTable;
-         data.addColumn('string', 'countryName');
+         /*data.addColumn('string', 'countryName');
 		 data.addColumn('number', 'countryFeature');
 		 data.addRows([
 			  
@@ -74,7 +75,7 @@
 			con.close();
 		%>
 		]);
-
+		*/
         var options = {
           title: 'My Daily Activities',
           pieHole: 0.4,
@@ -85,7 +86,7 @@
       }
 	  function drawChart() {
         var data = google.visualization.arrayToDataTable;
-        data.addColumn('string', 'countryName');
+        /*data.addColumn('string', 'countryName');
 		data.addColumn('number', 'countryFeature');
 		data.addRows([
 			  
@@ -107,7 +108,8 @@
 			con.close();
 		%>
 		]);
-
+	
+		*/
         var options = {
           title: 'Age vs. Weight comparison',
           hAxis: {title: 'Age', minValue: 0, maxValue: 15},
@@ -121,6 +123,27 @@
       }
 	  }
     </script>
+
+    <script src="jquery/jquery-3.2.1.js"></script>
+	<script src="javascript/wikipediaDataPull.js"></script>
+	<script>
+		function insertcountries()
+		{
+			var Country_Names = GetCountryNamesC();
+			
+			var CL = document.getElementById("countryList");
+			var div = document.createElement('div');
+
+    		div.innerHTML = '';
+			 
+	        for (var i = 0; i<Country_Names.length; i++)
+	        {
+	        	div.innerHTML += "<input type=\"checkbox\" name=\"checkbox\" value=\""+i+"\">"+Country_Names[i]+"<br>";
+	        }
+	        CL.appendChild(div); 
+	         		
+	    }
+	</script>
 	<style>
 	.scrollList {
 	height:10%;
@@ -132,11 +155,11 @@
 	
 	#rightElements {
     position: absolute;
-    right: 35%;
+    right: 15%;
     top: 20%;
 	}</style>
   </head>
-  <body onload="insertcountries">
+  <body onload="insertcountries()">
 		<div id="header">
 			<h1>Pornhub</h1>
 		</div>
@@ -158,7 +181,7 @@
 				<h1>Free porn from every country in the planet</h1>
 				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 				Χώρες<br>
-				<div id="CheckDiv"><textarea class="scrollList" id="countryList"></textarea></div><br>
+				<div class="scrollList" id="countryList" contenteditable="true"></div><br>
 				<div id="rightElements">
 				Κριτήρια:<select id="crit" position="right">
 				<option value="crit1">Έκταση (σε τετραγωνικά χιλιόμετρα)</option>
@@ -179,24 +202,4 @@
 		</div>
   </body>
 </html>
-<script src="jquery/jquery-3.2.1.js"></script>
-<script>
-function insertcountries(tmpArray)
-	{
-        select1 = document.getElementById("countryList");
-		var Country_Names = tmpArray;
 
-		console.log(Country_Names);
-        for (var i = 0; i<Country_Names.length; i++)
-        {
-			var CD = document.getElementById("CheckDiv");
-            var checkbox = document.createElement('input');
-			checkbox.setAttribute("type", "checkbox");
-			checkbox.setAttribute("id", i);
-			checkbox.setAttribute("value", Country_Names[i]+'<br/>');
-			
-			CD.appendChild(checkbox); 
-        }
-	}
-</script>
-<script src="javascript/wikipediaDataPull.js"></script>

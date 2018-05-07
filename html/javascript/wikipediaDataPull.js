@@ -237,6 +237,29 @@ function GetCountryNames()
 		return Country_Names;
 }
 
+function GetCountryNamesC()
+{
+	if(request)
+	{
+		request.abort();
+	}
+
+	dataV = {};
+	dataV.gini = 5;
+	dataV.type = 3;
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
+		dataType:"json",
+		data:dataV,
+		async:false,
+	}).responseJSON;
+
+	return answer;
+}
+
 function GetCountryAndFeatures()
 {
 	if(request)

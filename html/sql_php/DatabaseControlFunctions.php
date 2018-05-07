@@ -135,6 +135,8 @@
 		echo $json_array;
 	}
 
+	
+
 	function GetCountriesAndCorrespondingValues()
 	{
 		$functionData = 'gini';  
