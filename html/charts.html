@@ -18,6 +18,8 @@
 	var value=document.getElementById("charts").selectedIndex;
     var feature=document.getElementById("crit").selectedIndex;
 	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
+	var str = features[feature];
+	alert(str);
 	  if(value==0){
       google.charts.setOnLoadCallback(drawRegionsMap);
 	  }
@@ -31,7 +33,7 @@
 
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
+          ['Country', str],
           ['Germany', 200],
 		  ['Greece',500],
           ['United States', 300],
