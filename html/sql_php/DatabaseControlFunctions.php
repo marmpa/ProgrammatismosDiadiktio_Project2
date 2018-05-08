@@ -121,7 +121,7 @@
 
 		$row = null;
 		$countryArray = Array();
-		while($stmt->fetch())
+			while($stmt->fetch())
 		{
 			$countryArray[] = $Country_Name;
 		}
@@ -151,8 +151,17 @@
 		{
 			die("Connection failed: " . $mysqli->connect_error);
 		}
+		$temp='';
+		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries WHERE Country_Name in (";
 
-		$sql = "SELECT Country_Name ".$_POST['typeValue']." FROM Countries";
+		$va = $_POST['values'];
+		foreach($va as &$value)
+		{
+			$sql .= $temp;
+			$sql .= $values;
+			$temp=',';
+		}
+		$sql.=")";
 
 		if($stmt = $mysqli->prepare($sql))
 		{
@@ -164,7 +173,8 @@
 		$countryArray = Array();
 		while($stmt->fetch())
 		{
-			$countryArray[] = $Country_Name;
+			$countryArray[][0] = $Country_Name;
+			$countryArray[][1] = $typeValue;
 		}
 
 		$json_array = json_encode($countryArray);
@@ -180,13 +190,19 @@
 	
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
 	{
+
 		$function2Call = $_POST[$functionData];
-		//echo $function2Call;
+		
 		
 		if(is_numeric($function2Call) && !isset($_POST['type']))
 		{
-			echo "called yes";
+			
 			InsertData();
+		}
+		else if($_POST['sha1'] === 'features')
+		{
+			
+			GetCountriesAndCorrespondingValues();
 		}
 		else
 		{
