@@ -191,6 +191,7 @@ function GetCountryNames()
 		cc = {};
 		cc.gini = 5;
 		cc.type = 3;
+		cc.sha1 = "true";
 
 
 		request = $.ajax(
@@ -205,7 +206,10 @@ function GetCountryNames()
             			Country_Names = result;
             			console.log(Country_Names);
        				 },
-       				 dataType:"json"
+       				 dataType:"json",
+       				 error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
 			}
 
 		);
@@ -218,13 +222,7 @@ function GetCountryNames()
 		);
 		console.log(Country_Names.responseJSON);
 
-		request.fail(function (jqXHR, textStatus, errorThrown){
-        // Log the error to the console
-        	console.error(
-            	"The following error occurred: "+
-            	textStatus, errorThrown
-        	);
-    	});
+		
 
 
 
@@ -234,19 +232,27 @@ function GetCountryNames()
 			}
 		);
 
+		
+
 		return Country_Names;
 }
 
 function GetCountryNamesC()
 {
+	//console.log("marios");
 	if(request)
 	{
 		request.abort();
 	}
 
+	//console.log("geia sou  maria");
+
 	dataV = {};
 	dataV.gini = 5;
 	dataV.type = 3;
+	dataV.sha1 = "true";
+
+	console.log("GetCountryNamesC");
 
 	var answer = $.ajax(
 	{
@@ -255,22 +261,36 @@ function GetCountryNamesC()
 		dataType:"json",
 		data:dataV,
 		async:false,
+       	error: function( jqXhr, textStatus, errorThrown ){
+                    console.log(jqXhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                }
 	}).responseJSON;
+		
+	//console.log(answer);	
 
 	return answer;
 }
 
-function GetCountryAndFeatures()
+function GetCountryAndFeatures(values,typeData)
 {
+	console.log("naiii breeeeeeeeeee");
 	if(request)
 	{
 		request.abort();
 	}
 
-
+	console.log(values);
+	console.log("naiii");
 
 	dataV = {};
-	dataV.typeValue = "temp";
+	dataV.typeValue = typeData;
+	dataV.values = values;
+
+	dataV.gini = 8;
+	dataV.sha1 = 'features';
+	dataV.type = 3;
 
 	var answer = $.ajax(
 	{

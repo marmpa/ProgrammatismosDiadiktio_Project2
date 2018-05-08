@@ -5,6 +5,43 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<title>Pornhub</title> 
 	<link rel="stylesheet" href="css/custom.css" type="text/css">
+    <script src="jquery/jquery-3.2.1.js"></script>
+	<script src="javascript/wikipediaDataPull.js"></script>
+	<script type="text/javascript">
+		function insertcountries()
+		{
+			//GetCountryNamesC();
+			
+			var Country_Names = GetCountryNamesC();
+
+			console.log(Country_Names);
+			
+			var CL = document.getElementById("countryList");
+			
+    		CL.innerHTML = '';
+			 
+	        for (var i = 0; i<Country_Names.length; i++)
+	        {
+	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\">"+Country_Names[i]+"<br>";
+	        }
+
+	        var checkedBoxes = $("input:checkbox[id=checkbox]:checked");
+
+
+			var checkedCountries = [];        
+	        for(var x=0;x<checkedBoxes.length;x++)
+	        {
+	        	console.log(checkedBoxes[x].name);
+	        	console.log("for loop checkdBoxes");
+	        	checkedCountries.push(checkedBoxes[x].name);
+	        }
+
+	        
+
+	        return checkedCountries;		
+	    }
+	</script>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 	google.charts.load('current', {
@@ -14,21 +51,31 @@
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
 	  google.charts.load('current', {'packages':['corechart']});
-	function chartCreate(){	
+	function chartCreate()
+	{	
+
 	var value=document.getElementById("charts").selectedIndex;
     var feature=document.getElementById("crit").selectedIndex;
 	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
 	var str = features[feature];
-	alert(str);
-	  if(value==0){
-      google.charts.setOnLoadCallback(drawRegionsMap);
-	  }
-	  else if(value==1){
-	  google.charts.setOnLoadCallback(drawChart);
-	  }
-	  else{
-	  google.charts.setOnLoadCallback(drawPie);
-	  }
+	var checkedCountries = insertcountries();
+
+	console.log(checkedCountries);
+	var test = GetCountryAndFeatures(checkedCountries,str);
+	console.log(test);
+	console.log("giiia sou marakiiii");	
+	if(value==0)
+	{
+    	google.charts.setOnLoadCallback(drawRegionsMap);
+	}
+	else if(value==1)
+	{
+		google.charts.setOnLoadCallback(drawChart);
+	}
+	else
+	{
+		google.charts.setOnLoadCallback(drawPie);
+	}
 	  
 
       function drawRegionsMap() {
@@ -123,40 +170,13 @@
 
         chart3.draw(data, options);
       }
+      return false;
 	  }
     </script>
 
-    <script src="jquery/jquery-3.2.1.js"></script>
-	<script src="javascript/wikipediaDataPull.js"></script>
-	<script>
-		function insertcountries()
-		{
-			var Country_Names = GetCountryNamesC();
-			
-			var CL = document.getElementById("countryList");
-			
-    		CL.innerHTML = '';
-			 
-	        for (var i = 0; i<Country_Names.length; i++)
-	        {
-	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\">"+Country_Names[i]+"<br>";
-	        }
-
-	        var checkedBoxes = $("input:checkbox[id=checkbox]:checked");
+    
 
 
-			var checkedCountries = [];        
-	        for(var x=0;x<checkedBoxes.length;x++)
-	        {
-	        	console.log(checkedBoxes[x].name);
-	        	checkedCountries.push(checkedBoxes[x].name);
-	        }
-
-	        
-
-	        console.log(checkedCountries); 		
-	    }
-	</script>
 	<style>
 	.scrollList {
 	height:10%;
@@ -207,7 +227,8 @@
 				<option value="chart1">Geo Chart</option>
 				<option value="chart2">Scatter Chart</option>
 				<option value="chart3">Pie Chart</option>
-				</select></div>
+				</select><br>
+				<button type="button" value="Show Chart" onclick="return chartCreate()"></div>
 				<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 		</div>
 		<div id="footer">

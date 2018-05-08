@@ -155,6 +155,8 @@
 		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries WHERE Country_Name in (";
 
 		$va = $_POST['values'];
+
+		echo gettype($va);
 		foreach($va as &$value)
 		{
 			$sql .= $temp;
@@ -170,11 +172,11 @@
 		}
 
 		$row = null;
-		$countryArray = Array();
+		$countryArray = Array(Array(),Array());
 		while($stmt->fetch())
 		{
-			$countryArray[][0] = $Country_Name;
-			$countryArray[][1] = $typeValue;
+			$countryArray[0][] = $Country_Name;
+			$countryArray[1][] = $typeValue;
 		}
 
 		$json_array = json_encode($countryArray);
