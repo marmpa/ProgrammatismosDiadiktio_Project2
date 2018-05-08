@@ -132,16 +132,27 @@
 			var Country_Names = GetCountryNamesC();
 			
 			var CL = document.getElementById("countryList");
-			var div = document.createElement('div');
-
-    		div.innerHTML = '';
+			
+    		CL.innerHTML = '';
 			 
 	        for (var i = 0; i<Country_Names.length; i++)
 	        {
-	        	div.innerHTML += "<input type=\"checkbox\" name=\"checkbox\" value=\""+i+"\">"+Country_Names[i]+"<br>";
+	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\">"+Country_Names[i]+"<br>";
 	        }
-	        CL.appendChild(div); 
-	         		
+
+	        var checkedBoxes = $("input:checkbox[id=checkbox]:checked");
+
+
+			var checkedCountries = [];        
+	        for(var x=0;x<checkedBoxes.length;x++)
+	        {
+	        	console.log(checkedBoxes[x].name);
+	        	checkedCountries.push(checkedBoxes[x].name);
+	        }
+
+	        
+
+	        console.log(checkedCountries); 		
 	    }
 	</script>
 	<style>
@@ -181,7 +192,7 @@
 				<h1>Free porn from every country in the planet</h1>
 				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 				Χώρες<br>
-				<div class="scrollList" id="countryList" contenteditable="true"></div><br>
+				<div class="scrollList" id="countryList"></div><br>
 				<div id="rightElements">
 				Κριτήρια:<select id="crit" position="right">
 				<option value="crit1">Έκταση (σε τετραγωνικά χιλιόμετρα)</option>
