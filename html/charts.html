@@ -8,6 +8,7 @@
     <script src="jquery/jquery-3.2.1.js"></script>
 	<script src="javascript/wikipediaDataPull.js"></script>
 	<script type="text/javascript">
+		var checkedCountries = [];
 		function insertcountries()
 		{
 			//GetCountryNamesC();
@@ -22,23 +23,8 @@
 			 
 	        for (var i = 0; i<Country_Names.length; i++)
 	        {
-	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\">"+Country_Names[i]+"<br>";
-	        }
-
-	        var checkedBoxes = $("input:checkbox[id=checkbox]:checked");
-
-
-			var checkedCountries = [];        
-	        for(var x=0;x<checkedBoxes.length;x++)
-	        {
-	        	console.log(checkedBoxes[x].name);
-	        	console.log("for loop checkdBoxes");
-	        	checkedCountries.push(checkedBoxes[x].name);
-	        }
-
-	        
-
-	        return checkedCountries;		
+	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\"> "+Country_Names[i]+"<br>";
+	        }		
 	    }
 	</script>
 
@@ -58,12 +44,33 @@
     var feature=document.getElementById("crit").selectedIndex;
 	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
 	var str = features[feature];
-	var checkedCountries = insertcountries();
+	//console.log(checkedCountries);
+	checkedCountries=[];
+	var countryItems = document.getElementById("countryList").getElementsByTagName("input");
+	        for(var x=0;x<countryItems.length;x++)
+	        {
+	        	if(countryItems[x].checked)
+	        	{
+	        		checkedCountries.push(countryItems[x].name);
+	        	}
+	        }
 
-	console.log(checkedCountries);
-	var test = GetCountryAndFeatures(checkedCountries,str);
-	console.log(test);
+	var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
+	console.log(countriesAndFeaturesArray[1]);
+	console.log(countriesAndFeaturesArray.length);
+
+	for(x in countriesAndFeaturesArray)
+	{
+		console.log(x[0]);
+		console.log(x[1]);
+
+	}
+
 	console.log("giiia sou marakiiii");	
+
+
+
+
 	if(value==0)
 	{
     	google.charts.setOnLoadCallback(drawRegionsMap);
@@ -101,30 +108,22 @@
       }
 	  function drawPie() 
 	  {
-        var data = google.visualization.arrayToDataTable;
+        var data = google.visualization.arrayToDataTable
          /*data.addColumn('string', 'countryName');
 		 data.addColumn('number', 'countryFeature');
 		 data.addRows([
-			  
-		<%
-			while ( rs.next())
-			{
-
-				if ( rs.isLast())
-				{
-					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"]");
-				}
-				else
-				{
-					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"],");
-				}
-					
-			}
-			rs.close();
-			con.close();
-		%>
-		]);
-		*/
+		*/	  
+		([
+          ['Country', str],
+          ['Germany', 200],
+		  ['Greece',500],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]
+        ]);
+		
         var options = {
           title: 'My Daily Activities',
           pieHole: 0.4,
@@ -134,31 +133,21 @@
         chart2.draw(data, options);
       }
 	  function drawChart() {
-        var data = google.visualization.arrayToDataTable;
+        var data = google.visualization.arrayToDataTable
         /*data.addColumn('string', 'countryName');
 		data.addColumn('number', 'countryFeature');
 		data.addRows([
-			  
-		<%
-			while ( rs.next())
-			{
-
-				if ( rs.isLast())
-				{
-					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"]");
-				}
-				else
-				{
-					out.println("['"+rs.getString("course")+"',"+rs.getString("grade")+"],");
-				}
-					
-			}
-			rs.close();
-			con.close();
-		%>
-		]);
-	
-		*/
+		*/	  
+		([
+          ['Country', str],
+          ['Germany', 200],
+		  ['Greece',500],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]
+        ]);
         var options = {
           title: 'Age vs. Weight comparison',
           hAxis: {title: 'Age', minValue: 0, maxValue: 15},
@@ -214,7 +203,7 @@
 				<h1>Free porn from every country in the planet</h1>
 				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 				Χώρες<br>
-				<div class="scrollList" id="countryList"></div><br>
+				<div class="scrollList" id="countryList"></div>
 				<div id="rightElements">
 				Κριτήρια:<select id="crit" position="right">
 				<option value="crit1">Έκταση (σε τετραγωνικά χιλιόμετρα)</option>
@@ -228,7 +217,7 @@
 				<option value="chart2">Scatter Chart</option>
 				<option value="chart3">Pie Chart</option>
 				</select><br>
-				<button type="button" value="Show Chart" onclick="return chartCreate()"></div>
+				<input type="button" value="Show Chart" onclick="chartCreate()"></div>
 				<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 		</div>
 		<div id="footer">

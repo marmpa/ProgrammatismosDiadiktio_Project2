@@ -156,17 +156,19 @@
 
 		$va = $_POST['values'];
 
-		echo gettype($va);
-		foreach($va as &$value)
+		//echo gettype($va);
+		foreach($va as &$values)
 		{
 			$sql .= $temp;
-			$sql .= $values;
+			$sql .= '"'.$values.'"';
 			$temp=',';
 		}
 		$sql.=")";
 
+		//echo $sql . "pataaaates";
 		if($stmt = $mysqli->prepare($sql))
 		{
+			//echo "marios";
 			$stmt->bind_result($Country_Name,$typeValue);
 			$stmt->execute();
 		}

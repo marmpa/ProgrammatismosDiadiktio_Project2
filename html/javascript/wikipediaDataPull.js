@@ -299,7 +299,8 @@ function GetCountryAndFeatures(values,typeData)
 		dataType:"json",
 		data:dataV,
 		async:false,
-	}).responseText;
+	}).responseJSON;
+	
 
 	return answer;
 }
