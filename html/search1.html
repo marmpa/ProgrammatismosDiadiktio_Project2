@@ -4,7 +4,43 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script src="jquery/jquery-3.2.1.js"></script>
+<script src="javascript/wikipediaDataPull.js"></script>
+<script>
+function selectCenters1() {
+var arrayC=GetCountryNamesC();
+var x1=document.getElementById("center1");
+var x2=document.getElementById("center2");
+var str1 = x1.options[x1.selectedIndex].text;
+var str2 = x2.options[x2.selectedIndex].text;
+var value1=document.getElementById("center2").selectedIndex;
+if(str1==str2){
+		do{
+			var rand=Math.floor(Math.random()*arrayC.lenght);
+		}while(rand==value1);
+		x2.selectedIndex=rand;
+	}
 
+}
+
+
+function selectCenters2() {
+var arrayC=GetCountryNamesC();
+var x1=document.getElementById("center1");
+var x2=document.getElementById("center2");
+var str1 = x1.options[x1.selectedIndex].text;
+var str2 = x2.options[x2.selectedIndex].text;
+var value1=document.getElementById("center1").selectedIndex;
+if(str1==str2){
+		
+		do{
+			var rand=Math.floor(Math.random()*arrayC.lenght);
+		}while(rand==value1);
+		x1.selectedIndex=rand;
+	}
+	
+}
+</script>
 </head>
 	<body onload="GetCountryNames()">
 		<div id="container">
@@ -35,11 +71,10 @@
 						<legend>Επιλογή 2 χωρών:</legend>
 					  Κέντρο 1:<select id="center1">
 					  </select><br>
-					  
 					  Κέντρο 2:<select id="center2">
 					  </select><br>
+					  <input type="submit" value="K-Means search">
 					  </fieldset>
-					  
 					</form> 
 					<br>
 			</div>
@@ -52,9 +87,6 @@
 
 
 </html> 
-
-<script src="jquery/jquery-3.2.1.js"></script>
-
 <script>
 function insertcountries(tmpArray)
 	{
@@ -80,4 +112,3 @@ function insertcountries(tmpArray)
         }
 	}
 </script>
-<script src="javascript/wikipediaDataPull.js"></script>
