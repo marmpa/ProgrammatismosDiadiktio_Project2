@@ -66,14 +66,14 @@ fieldset {
 						<legend style="text-align:center;">Προσωπικά στοιχεία (Register)</legend>
 					  Όνομα:<br>
 					  <div id="inName">
-					  <input type="text" name="fname" required><br>
+					  <input type="text" name="fname" id="fname" required><br>
 					  </div>
 					  Επίθετο:<br>
-					  <input type="text" name="lname" required><br>
+					  <input type="text" name="lname" id="lname" required><br>
 					  Email:<br>
-					  <input type="email" name="email" required><br>
+					  <input type="email" name="email" id="email" required><br>
 					  Κωδικός:<br>
-					  <input type="password" name="pwd" pattern="(?=(?:\D*\d){2})(?=.*[A-Z]{2})(?=.*\W+).{6,8}" title="6-8 χαρακτήρες με τουλάχιστον 2 κεφαλαία,2 αριθμούς και 1 σύμβολο" required ><br>
+					  <input type="password" name="pwd" id="pwd" pattern="(?=(?:\D*\d){2})(?=.*[A-Z]{2})(?=.*\W+).{6,8}" title="6-8 χαρακτήρες με τουλάχιστον 2 κεφαλαία,2 αριθμούς και 1 σύμβολο" required ><br>
 					  Επανάληψη κωδικού:<br>
 					  <input type="password" name="pwd_match" required>
 					 
@@ -85,18 +85,18 @@ fieldset {
 					  
 					  <br><br>
 					  
-					  <input type="submit" value="Register">
+					  <input type="submit" value="Register" onclick="InsertUserToDb()">
 					  
 					  </fieldset>
 					  
 					</form>   
-					<form action="profil.php" method="post">  
+					<form action="country.html" method="post">  
 					  <fieldset>
 						<legend style="text-align:center;">Είσοδος Χρήστη (Sign in)</legend>
 					  Email:<br>
-					  <input type="email" name="email_sign" required><br>
+					  <input type="email" name="email_sign" id="email_sign" required><br>
 					  Κωδικός:<br>
-					  <input type="password" name="pwd_sign"<br>
+					  <input type="password" name="pwd_sign" id="pwd_sign" <br>
 					 
 
 					  <br><br><br><br><br><br><br><br><br><br>
@@ -105,7 +105,7 @@ fieldset {
 					  Sign in with Facebook
 					  </a>
 					  </div><br>
-					  <input type="submit" value="Sign in">
+					  <input type="submit" value="Sign in" onclick="SignUpUserFromDb()">
 					  					  
 					  
 					  </fieldset>

@@ -305,6 +305,87 @@ function GetCountryAndFeatures(values,typeData)
 	return answer;
 }
 
+function InsertUserToDb()
+{
+	if(request)
+	{
+		request.abort();
+	}
+
+	//console.log("geia sou  maria");
+
+	dataV = {};
+
+	dataV.fname = document.getElementById("fname");
+	dataV.lname = document.getElementById("lname");
+	dataV.email = document.getElementById("email");
+	dataV.pwd = document.getElementById("pwd");
+
+	dataV.gini = 5;
+	dataV.type = 3;
+	dataV.sha1 = "InsertUser";
+
+	console.log("InsertUserToDb");
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
+		dataType:"json",
+		data:dataV,
+		async:false,
+       	error: function( jqXhr, textStatus, errorThrown ){
+                    console.log(jqXhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                }
+	}).responseJSON;
+		
+	//console.log(answer);	
+
+	return answer;
+}
+
+function SignUpUserFromDb()
+{
+	if(request)
+	{
+		request.abort();
+	}
+
+	//console.log("geia sou  maria");
+
+	dataV = {};
+
+	dataV.email_sign = document.getElementById("email_sign");
+	dataV.pwd_sign = document.getElementById("pwd_sign");
+
+	dataV.gini = 5;
+	dataV.type = 3;
+	dataV.sha1 = "SignUpUser";
+
+	console.log("SignUpUserFromDb");
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
+		dataType:"json",
+		data:dataV,
+		async:false,
+       	error: function( jqXhr, textStatus, errorThrown ){
+                    console.log(jqXhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                }
+	}).responseJSON;
+		
+	//console.log(answer);	
+
+	return answer;
+}
+
+
 
 //Onoma tis xoras epistrofi se sinartisi se pinaka
 

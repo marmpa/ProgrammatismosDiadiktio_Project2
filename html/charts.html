@@ -63,7 +63,6 @@
 	{
 		console.log(x[0]);
 		console.log(x[1]);
-
 	}
 
 	console.log("giiia sou marakiiii");	
@@ -86,16 +85,11 @@
 	  
 
       function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', str],
-          ['Germany', 200],
-		  ['Greece',500],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
+      	var countriesArray = [];
+      	countriesArray.push(['Country', str]);
+      	countriesArray.push(countriesAndFeaturesArray);
+
+        var data = google.visualization.arrayToDataTable([countriesArrays]);
 
         var options = {
 		backgroundColor: '#81d4fa',
@@ -108,21 +102,15 @@
       }
 	  function drawPie() 
 	  {
-        var data = google.visualization.arrayToDataTable
+	  	var countriesArray = [];
+	  	countriesArray.push(['Country', str]);
+      	countriesArray.push(countriesAndFeaturesArray);
+        var data = google.visualization.arrayToDataTable([countriesArray]);
          /*data.addColumn('string', 'countryName');
 		 data.addColumn('number', 'countryFeature');
 		 data.addRows([
 		*/	  
-		([
-          ['Country', str],
-          ['Germany', 200],
-		  ['Greece',500],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
+		
 		
         var options = {
           title: 'My Daily Activities',
@@ -133,21 +121,15 @@
         chart2.draw(data, options);
       }
 	  function drawChart() {
-        var data = google.visualization.arrayToDataTable
+	  	var countriesArray = [];
+	  	countriesArray.push(['Country', str]);
+      	countriesArray.push(countriesAndFeaturesArray);
+        var data = google.visualization.arrayToDataTable([countriesArray]);
         /*data.addColumn('string', 'countryName');
 		data.addColumn('number', 'countryFeature');
 		data.addRows([
 		*/	  
-		([
-          ['Country', str],
-          ['Germany', 200],
-		  ['Greece',500],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
+		
         var options = {
           title: 'Age vs. Weight comparison',
           hAxis: {title: 'Age', minValue: 0, maxValue: 15},
