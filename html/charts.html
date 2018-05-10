@@ -87,9 +87,12 @@
       function drawRegionsMap() {
       	var countriesArray = [];
       	countriesArray.push(['Country', str]);
-      	countriesArray.push(countriesAndFeaturesArray);
+      	countriesArray = countriesArray.concat(countriesAndFeaturesArray);
 
-        var data = google.visualization.arrayToDataTable([countriesArrays]);
+
+      	
+
+        var data = google.visualization.arrayToDataTable(countriesArray);
 
         var options = {
 		backgroundColor: '#81d4fa',
@@ -104,8 +107,8 @@
 	  {
 	  	var countriesArray = [];
 	  	countriesArray.push(['Country', str]);
-      	countriesArray.push(countriesAndFeaturesArray);
-        var data = google.visualization.arrayToDataTable([countriesArray]);
+      	countriesArray = countriesArray.concat(countriesAndFeaturesArray);
+        var data = google.visualization.arrayToDataTable(countriesArray);
          /*data.addColumn('string', 'countryName');
 		 data.addColumn('number', 'countryFeature');
 		 data.addRows([
@@ -122,9 +125,13 @@
       }
 	  function drawChart() {
 	  	var countriesArray = [];
+
 	  	countriesArray.push(['Country', str]);
-      	countriesArray.push(countriesAndFeaturesArray);
-        var data = google.visualization.arrayToDataTable([countriesArray]);
+	  	countriesArray = countriesArray.concat(countriesAndFeaturesArray);
+
+      	
+
+        var data = google.visualization.arrayToDataTable(countriesArray);
         /*data.addColumn('string', 'countryName');
 		data.addColumn('number', 'countryFeature');
 		data.addRows([

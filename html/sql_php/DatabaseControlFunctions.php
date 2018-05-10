@@ -174,11 +174,10 @@
 		}
 
 		$row = null;
-		$countryArray = Array(Array(),Array());
+		$countryArray = Array();
 		while($stmt->fetch())
 		{
-			$countryArray[0][] = $Country_Name;
-			$countryArray[1][] = $typeValue;
+			$countryArray[] = Array($Country_Name, $typeValue);
 		}
 
 		$json_array = json_encode($countryArray);
@@ -262,7 +261,7 @@
 
 		if($result = $mysqli->query($sql) === TRUE)
 		{
-			if($sql>0)
+			//if($sql>0)
 			echo "Uparxei o xristis";
 		}
 		else
