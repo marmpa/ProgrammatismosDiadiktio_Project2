@@ -237,7 +237,7 @@
 		$mysqli->close();
 	}
 
-	function SingUpUser()
+	function SignUpUser()
 	{
 		
 		$functionData = 'gini';  
@@ -294,27 +294,19 @@
 		$function2Call = $_POST[$functionData];
 		
 		
+		
 		if(is_numeric($function2Call) && !isset($_POST['type']))
 		{
 			
 			InsertData();
 		}
-		else if($_POST['sha1'] === 'features')
+		else if(isset($_POST['sha1']) && $_POST['sha1'] !== 'true')
 		{
-			
-			GetCountriesAndCorrespondingValues();
-		}
-		else if($_POST['sha1'] === 'InsertUser')
-		{
-			InsertUser();
-		}
-		else if($_POST['sha1'] === 'SignUpUser')
-		{
-			InsertUser();
+			$function2Call = $_POST['sha1'];
+			$function2Call();
 		}
 		else
-		{
-			
+		{		
 			GetCountriesInDB();
 		}
 	}
