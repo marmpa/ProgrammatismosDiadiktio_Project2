@@ -253,6 +253,7 @@ function GetCountryNamesC()
 	dataV.sha1 = "true";
 
 	console.log("GetCountryNamesC");
+	
 
 	var answer = $.ajax(
 	{
@@ -289,7 +290,7 @@ function GetCountryAndFeatures(values,typeData)
 	dataV.values = values;
 
 	dataV.gini = 8;
-	dataV.sha1 = 'features';
+	dataV.sha1 = 'GetCountriesAndCorrespondingValues';
 	dataV.type = 3;
 
 	var answer = $.ajax(

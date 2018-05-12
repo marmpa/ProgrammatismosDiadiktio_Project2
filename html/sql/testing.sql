@@ -31,13 +31,13 @@ create or replace function ooo(lengthA NUMBER) return NUMBER IS
    SavedNewCenter1LON NUMBER;
    SavedNewCenter2LAT NUMBER;
    SavedNewCenter2LON NUMBER;
-   CounterID NUMBER(2);
+   CounterID NUMBER;
 BEGIN 
     --κανουμε extend και αρχικοποιουμε τους πινακες με καποιες τυχαιες τιμες
-    mID.extend();
-    mNAME.extend();
-    mLAT.extend();
-    mLON.extend();
+    --mID.extend();
+    --mNAME.extend();
+    --mLAT.extend();
+    --mLON.extend();
     mTEAM1.extend();
     mTEAM2.extend();
     /*mID  :=CityID(1,2,3,4,5,6);
@@ -54,9 +54,13 @@ BEGIN
         dbms_output.put_line('Xristi dose epilogi');
         choise:=&choise;
         IF (choise=1) THEN ...*/
-    --counter:=1;
+    counter:=1;
     CounterID:=1;
     LOOP
+    mID.extend();
+    mNAME.extend();
+    mLAT.extend();
+    mLON.extend();
         mID(CounterID):= CounterID;
         mNAME(CounterID):= 'hey';  --select Country_Name from psd_project.dbo.countries;
         mLAT(CounterID) :=  6; --select Pos_Lati from psd_project.dbo.countries;
