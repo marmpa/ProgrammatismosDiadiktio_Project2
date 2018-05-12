@@ -1,6 +1,7 @@
 --Λιάρος Θωμάς icsd15107
 set serveroutput on;
-create function K_Means(IN length NUMBER(4)) as{
+create or replace function ooo(lengthA NUMBER) return NUMBER as
+Begin
 DECLARE 
    --φτιαχνουμε ολους τους τυπους και τις μεταβλητες που θελουμε
    TYPE CityID IS VARRAY(15) OF NUMBER(3) not null;
@@ -82,22 +83,22 @@ BEGIN
     CounterID:=1;
     LOOP
         mID(counter):= CounterID;
-        mNAME(counter):=select Country_Name from psd_project.dbo.countries;
-        mLAT(counter):=select Pos_Lati from psd_project.dbo.countries;
-        mLON(counter):=select Pos_Long from psd_project.dbo.countries;
+        mNAME(counter):='select Country_Name from psd_project.dbo.countries';
+        mLAT(counter):='select Pos_Lati from psd_project.dbo.countries';
+        mLON(counter):='select Pos_Long from psd_project.dbo.countries';
         counter:=counter+1;
         CounterID:=CounterID+1;
-        EXIT WHEN counter==length;
+        EXIT WHEN counter=lengthA;
     END LOOP;
 
-    FOR i IN length LOOP
+    FOR i IN lengthA LOOP
     dbms_output.put_line(mID(i) || ': ' || mNAME(i) || '-> ' || mLAT(i) || '|' || mLON(i));
     END LOOP;
     dbms_output.put_line('Loading..');
     --παιρνουμε 2 τυχαιες πολεις (ακομα και η ιδια δυο φορες να είναι δεν εχουμε θεμα)
-    rand := dbms_random.value(1,length);
+    rand := dbms_random.value(1,lengthA);
     Center1:=mID(rand);
-    rand := dbms_random.value(1,length);
+    rand := dbms_random.value(1,lengthA);
     Center2:=mID(rand);
     --αρχικοποιουμε τις συντεταγμενες των 2 πολεων σαν τις συντεταγμενες των 2 κεντρων
     NewCenter1LAT:=mLAT(Center1);
@@ -109,7 +110,7 @@ BEGIN
     FOR i IN 1 .. 5 LOOP
         dbms_output.put_line('---- Omadopoiisi No: ' || i || ' ----'); 
         --κοιταμε που βρισκεται αρχικα ποιο κοντα η κάθε πολη, σε ποια ομαδα δηλαδη, εμφανιζουμε τις αποστασεις και την βαζουμε στην αντιστοιχη ομαδα που ανηκει
-        FOR j IN 1 .. length LOOP
+        FOR j IN 1 .. lengthA LOOP
         No1:=SQRT((mLAT(j)-NewCenter1LAT)*(mLAT(j)-NewCenter1LAT)+(mLON(j)-NewCenter1LON)*(mLON(j)-NewCenter1LON));
         No2:=SQRT((mLAT(j)-NewCenter2LAT)*(mLAT(j)-NewCenter2LAT)+(mLON(j)-NewCenter2LON)*(mLON(j)-NewCenter2LON));
         dbms_output.put_line('Loop/Poli '|| j || ' Apostasi apo proto kentro: '||No1);
@@ -130,7 +131,7 @@ BEGIN
         Counter1:=0;
         Counter2:=0;
         --επαναληψη για να δουμε τι θα προσθεσουμε σε καθε συντεταγμενη της καθε ομάδας αναλογα με το ποιες πολεις ειναι σε αυτη
-        FOR j IN 1 .. length LOOP
+        FOR j IN 1 .. lengthA LOOP
              IF mName(j)=mTEAM1(j) THEN
                    NewCenter1LAT:=NewCenter1LAT+mLAT(j);
                    NewCenter1LON:=NewCenter1LON+mLON(j);
@@ -175,12 +176,12 @@ BEGIN
         mTEAM2:=TEAM('no','no','no','no','no','no');
     END LOOP;
     --Εμφανιζουμε τα στοιχεια ολων των πολεων και την ομαδα τους τελικα για να δουμε αν είχαμε τα επιθυμητα αποτελεσματα με βαση αυτα που δωσαμε
-     FOR i IN 1 .. length LOOP
+     FOR i IN 1 .. lengthA LOOP
      IF mNAME(i)=mTEAM1(i) THEN
      dbms_output.put_line('TEAM 1 : '||mID(i) || ': ' || mNAME(i) || '-> ' || mLAT(i) || '|' || mLON(i));
      ELSE
      dbms_output.put_line('TEAM 2 : '||mID(i) || ': ' || mNAME(i) || '-> ' || mLAT(i) || '|' || mLON(i));
      END IF;
      END LOOP;
+     return counter;
 END;
-}
