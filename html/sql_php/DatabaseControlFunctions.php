@@ -205,9 +205,10 @@
 			die("Connection failed: " . $mysqli->connect_error);
 		}
 
-		echo (str_replace("$","",$_POST['GPD']));
+		//echo (str_replace("$","",$_POST['GPD']));
+		//$sql = "SELECT * FROM Users";
 
-		$sql = "INSERT into Users values(".$_POST['fname'].",".$_POST['lname'].",".$_POST['email'].",".$_POST['pwd'].",1)";
+		$sql = "INSERT into Users values(\"".$_POST['email']."\",\"".$_POST['fname']."\",\"".$_POST['lname']."\",\"".$_POST['pwd']."\",1)";
 		//$sql = "SELECT * FROM Countries";
 
 
@@ -255,7 +256,7 @@
 
 		echo (str_replace("$","",$_POST['GPD']));
 
-		$sql = "SELECT COUNT (Name) From Users where(Email=".$_POST['email_sign']."AND password=".$_POST['pwd_sign'].")";
+		$sql = "SELECT COUNT (Name) From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
 		//$sql = "SELECT * FROM Countries";
 
 
@@ -286,6 +287,15 @@
 		$mysqli->close();
 	}
 
+	/*$athSh1 = 5;
+
+	if($athSh1===5)
+	{
+		$function2Call = 'InsertUser';
+		$function2Call();
+	}
+
+	*/
 	
 	
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
