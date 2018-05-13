@@ -15,7 +15,7 @@
 		$dbname = 'psd_project';
 
 		$mysqli = new mysqli($serverName,$userName,$password,$dbname);
-
+		
 		if($mysqli->connect_error)
 		{
 			die("Connection failed: " . $mysqli->connect_error);

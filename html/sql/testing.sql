@@ -1,7 +1,7 @@
 --Λιάρος Θωμάς icsd15107
 set serveroutput on;
 drop function ooo;
-create or replace function ooo(lengthA NUMBER) return NUMBER IS
+create or replace function ooo(lengthA NUMBER,selectChoise NUMBER,Column1 varchar2, Column2 varchar2) return NUMBER IS
    --φτιαχνουμε ολους τους τυπους και τις μεταβλητες που θελουμε
    TYPE CityID IS VARRAY(15) OF NUMBER(3) not null;
    TYPE CityName IS VARRAY(15) OF VARCHAR2(15);
@@ -56,19 +56,36 @@ BEGIN
         IF (choise=1) THEN ...*/
     counter:=1;
     CounterID:=1;
+    if(selectChoise=1) THEN 
     LOOP
     mID.extend();
     mNAME.extend();
     mLAT.extend();
-    mLON.extend();
+    mLON.extend();  
         mID(CounterID):= CounterID;
-        mNAME(CounterID):= 'hey';  --select Country_Name from psd_project.dbo.countries;
-        mLAT(CounterID) :=  6; --select Pos_Lati from psd_project.dbo.countries;
-        mLON(CounterID) :=  6; --select Pos_Long from psd_project.dbo.countries;
-        --counter:=counter+1;
+        select Country_Name into mNAME(CounterID) from countries;
+        select Pos_Lati into mLAT(CounterID) from countries;
+        select Pos_Long into mLON(CounterID) from countries;
+        counter:=counter+1;
         CounterID:=CounterID+1;
         EXIT WHEN counterID=6;
     END LOOP;
+    
+    ELSE
+    LOOP
+    mID.extend();
+    mNAME.extend();
+    mLAT.extend();
+    mLON.extend();  
+        mID(CounterID):= CounterID;
+        select Country_Name into mNAME(CounterID) from countries;
+        select Column1 into mLAT(CounterID) from countries;
+        select Column2 into mLON(CounterID) from countries;
+        counter:=counter+1;
+        CounterID:=CounterID+1;
+        EXIT WHEN counterID=6;
+    END LOOP;
+    END IF;
 
     FOR i IN 1..lengthA LOOP
     dbms_output.put_line(mID(i) || ': ' || mNAME(i) || '-> ' || mLAT(i) || '|' || mLON(i));
