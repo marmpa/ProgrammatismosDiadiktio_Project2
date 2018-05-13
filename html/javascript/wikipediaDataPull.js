@@ -11,7 +11,6 @@ var coordY;
 var request;
 
 var country_Name;
-Math.
 
 function getCountryInfo(searchTerm)
 {
