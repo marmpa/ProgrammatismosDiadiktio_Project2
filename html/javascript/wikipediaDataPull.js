@@ -79,6 +79,8 @@ $.getJSON(site,function(json)
 		{
 			countryDictionary.population = wikiString.match(patternPopulationS)[2];
 		}
+
+		
 		
 		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
 		countryDictionary.HDI = wikiString.match(patternHDI)[1];
