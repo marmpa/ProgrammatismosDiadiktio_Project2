@@ -271,11 +271,12 @@ function GetCountryNamesC()
 		async:false,
        	error: function( jqXhr, textStatus, errorThrown ){
                     console.log(jqXhr);
-                    //console.log(textStatus);
-                    //console.log(errorThrown);
+                    console.log(textStatus);
+                    console.log(errorThrown);
                 }
 	}).responseJSON;
-		
+
+	console.log(answer);
 	//console.log(answer);	
 
 	return answer;
@@ -307,8 +308,14 @@ function GetCountryAndFeatures(values,typeData)
 		dataType:"json",
 		data:dataV,
 		async:false,
+		error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    console.log( textStatus );
+                    console.log( jqXhr );
+                }
 	}).responseJSON;
-	
+		
+	console.log(answer);
 
 	return answer;
 }
@@ -322,36 +329,48 @@ function InsertUserToDb()
 
 	//console.log("geia sou  maria");
 
-	dataV = {};
+	var dataV = {};
 
-	dataV.fname = document.getElementById("fname");
-	dataV.lname = document.getElementById("lname");
-	dataV.email = document.getElementById("email");
-	dataV.pwd = document.getElementById("pwd");
+	dataV.fname = document.getElementById("fname").value;
+	dataV.lname = document.getElementById("lname").value;
+	dataV.email = document.getElementById("email").value;
+	dataV.pwd = document.getElementById("pwd").value;
+
+	console.log(dataV);
 
 	dataV.gini = 5;
 	dataV.type = 3;
 	dataV.sha1 = "InsertUser";
 
-	console.log("InsertUserToDb");
+	console.log("InsertData");
 
-	var answer = $.ajax(
+	try
 	{
-		url:'sql_php/DatabaseControlFunctions.php',
-		type:'POST',
-		dataType:"json",
-		data:dataV,
-		async:false,
-       	error: function( jqXhr, textStatus, errorThrown ){
-                    console.log(jqXhr);
-                    //console.log(textStatus);
-                    //console.log(errorThrown);
-                }
-	}).responseJSON;
+
+	
+		var answer = $.ajax(
+		{
+			url:'sql_php/DatabaseControlFunctions.php',
+			type:'POST',
+			dataType:"json",
+			data:dataV,
+			async:false,
+			error: function( jqXhr, textStatus, errorThrown ){
+	                    console.log( errorThrown );
+	                    console.log( textStatus );
+	                    console.log( jqXhr );
+	                }
+		});
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
+	
 		
 	//console.log(answer);	
 
-	return answer;
+	//return answer;
 }
 
 function SignUpUserFromDb()
@@ -387,10 +406,13 @@ function SignUpUserFromDb()
                     //console.log(errorThrown);
                 }
 	}).responseJSON;
-		
-	//console.log(answer);	
 
-	return answer;
+	alert(answer);
+		
+		
+	console.log(answer);	
+
+	//document.getElementById("submitForm").submit();
 }
 
 
