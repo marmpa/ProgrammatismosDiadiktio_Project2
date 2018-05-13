@@ -10,7 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+  
 <script src="jquery/jquery-3.2.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="javascript/countries.json"></script>
 <script src="javascript/wikipediaDataPull.js"></script>
 <script>
 	function wikiSearch(txtCountry) {
@@ -28,6 +31,7 @@
 	  
 	  xhttp.send();
 	}
+
 </script>
 </head>
 	<body>
@@ -79,4 +83,17 @@
 			</div>
 		</div>
 	</body>
+
+	<script>
+  $( function() {
+    
+    finalArray = [];
+
+		jsonCountryData.forEach(function(obj){finalArray.push(obj.name)});
+		
+    $( "#txtCountry" ).autocomplete({
+      source: finalArray
+    });
+  } );
+  </script>
 </html> 

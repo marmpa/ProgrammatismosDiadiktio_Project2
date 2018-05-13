@@ -49,7 +49,8 @@ $.getJSON(site,function(json)
 		var patternGini = /Gini\s=\s((\d*\.)?\d+)/i;
 		var patternHDI = /HDI\s=\s((\d*\.)?\d+)/i;
 		var patternGDPpC = /GDP_nominal_per_capita\s=\s(\$(\d*,)?\d+)/i;
-		var patternPopulation =/population_estimate\s=\s({{increase}}\s)?([\d,]*)(\s{{increase}})?/i;
+		var patternPopulationE =/population_estimate\s=\s({{increase}}\s)?([\d,]*)(\s{{increase}})?/i;
+		var patternPopulationS =/population_census\s=\s({{increase}}\s)?([\d,]*)(\s{{increase}})?/i;
 		var patternPopulationOld = /population_estimate\s=(\s{{.*}})?\s([\d,]*)(<ref.+?\sweb)?\s*\|/i;
 		var patternArea = /area_km2\s=\s(((\d*),?)*)/i;
 		var patternCapital = /capital\s=\s\[+(\w+\s*)+\]+/i;
@@ -68,7 +69,15 @@ $.getJSON(site,function(json)
 		countryDictionary.coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
 		countryDictionary.capitalName = wikiString.match(patternCapital)[1];
 		countryDictionary.area = wikiString.match(patternArea)[1];
-		countryDictionary.population = wikiString.match(patternPopulation)[2];
+		try
+		{
+			countryDictionary.population = wikiString.match(patternPopulationE)[2];
+		}
+		catch(err)
+		{
+			countryDictionary.population = wikiString.match(patternPopulationS)[2];
+		}
+		
 		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
 		countryDictionary.HDI = wikiString.match(patternHDI)[1];
 		countryDictionary.gini = wikiString.match(patternGini)[1];
