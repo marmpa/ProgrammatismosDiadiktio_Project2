@@ -11,6 +11,7 @@ var coordY;
 var request;
 
 var country_Name;
+Math.
 
 function getCountryInfo(searchTerm)
 {
@@ -120,10 +121,12 @@ function InsertToDB()
 			request.abort();
 		}
 
+
 		if(!("gini" in countryDictionary))
 		{
 			return;
 		}
+		
 
 		//var $form = $(this);
 
@@ -152,6 +155,8 @@ function InsertToDB()
 				console.log("Nai leitourgei");
 			}
 		);
+
+		
 
 		request.fail(function (jqXHR, textStatus, errorThrown){
         // Log the error to the console
@@ -213,6 +218,7 @@ function GetCountryNames()
 			}
 
 		);
+		
 
 
 		var Country_Names = request.done(function(response,textStatus,jqXHR)
