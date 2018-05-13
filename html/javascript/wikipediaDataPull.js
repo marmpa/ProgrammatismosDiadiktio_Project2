@@ -12,6 +12,8 @@ var request;
 
 var country_Name;
 
+
+
 function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
