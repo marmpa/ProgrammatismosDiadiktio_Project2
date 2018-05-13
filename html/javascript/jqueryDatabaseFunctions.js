@@ -1,5 +1,6 @@
 var request;
 
+
 $("#foo").submit(function(event)
 	{
 		event.preventDefault();
