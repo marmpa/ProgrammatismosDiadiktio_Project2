@@ -4,6 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
+<script src="jquery/jquery-3.2.1.js"></script>
+<script src="javascript/wikipediaDataPull.js"></script>
+<script type="text/javascript">
+		var checkedCountries = [];
+		function insertcountries()
+		{
+			//GetCountryNamesC();
+			
+			var Country_Names = GetCountryNamesC();
+
+			console.log(Country_Names);
+			
+			var CL = document.getElementById("countryList");
+			
+    		CL.innerHTML = '';
+			 
+	        for (var i = 0; i<Country_Names.length; i++)
+	        {
+	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\"> "+Country_Names[i]+"<br>";
+	        }		
+	    }
+</script>
 <script>
 function criterio1() {
 var x1=document.getElementById("criterion1");
@@ -37,8 +59,73 @@ if(str1==str2){
 	
 }
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+	  google.charts.load('current', {'packages':['corechart']});
+	function chartCreate()
+	{	
+	var feature1=document.getElementById("criterion1").selectedIndex;
+    var feature2=document.getElementById("criterion1").selectedIndex;
+	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
+	var str1 = features[feature1];
+	var str2 = features[feature2];
+	
+	checkedCountries=[];
+	var countryItems = document.getElementById("countryList").getElementsByTagName("input");
+	        for(var x=0;x<countryItems.length;x++)
+	        {
+	        	if(countryItems[x].checked)
+	        	{
+	        		checkedCountries.push(countryItems[x].name);
+	        	}
+	        }
+	K_Means(checkedCountries,10,str1,str2);
+	
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart(){	
+	vvar data = google.visualization.arrayToDataTable([
+        ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
+        ['CAN',    80.66,              1.67,      'North America',  33739900],
+        ['DEU',    79.84,              1.36,      'Europe',         81902307],
+        ['DNK',    78.6,               1.84,      'Europe',         5523095],
+        ['EGY',    72.73,              2.78,      'Middle East',    79716203],
+        ['GBR',    80.05,              2,         'Europe',         61801570],
+        ['IRN',    72.49,              1.7,       'Middle East',    73137148],
+        ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
+        ['ISR',    81.55,              2.96,      'Middle East',    7485600],
+        ['RUS',    68.6,               1.54,      'Europe',         141850000],
+        ['USA',    78.09,              2.05,      'North America',  307007000]
+      ]);
+
+      var options = {
+        title: 'Bubble Chart!',
+        hAxis: {title: 'Countries'},
+        vAxis: {title: 'Features'},
+        bubble: {textStyle: {fontSize: 11}}
+      };
+
+      var chart = new google.visualization.BubbleChart(document.getElementById('regions_div'));
+      chart.draw(data, options);
+	};
+	//var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
+	}
+</script>
+<style>
+	.scrollList {
+	height:10%;
+    width:30%;
+    overflow:auto;
+	wrap:soft;
+	text-align: left;
+	}
+	
+	#rightElements {
+	position: absolute;
+    right: 15%;
+    top: 20%;
+	}</style>
 </head>
-	<body>
+	<body onload="insertcountries()">
 		<div id="container">
 			<div id="header">
 				<h1>Pornhub</h1>
@@ -63,8 +150,8 @@ if(str1==str2){
 					<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 
 					 <form>
-					 <fieldset>
-						<legend>Επιλογή 2 χωρών:</legend>
+					  <div class="scrollList" id="countryList"></div>
+					  <div id="rightElements">
 					  Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
 					  <option value="criterion11">GDP per capita</option>
 					  <option value="criterion12">HDI (Human Development Index)</option>
@@ -75,11 +162,11 @@ if(str1==str2){
 					  <option value="criterion22"selected>HDI (Human Development Index)</option>
 					  <option value="criterion23">Gini Coefficient</option>
 					  </select><br>
-					  <input type="submit" value="K-Means search">
-					  </fieldset>
-					  
+					  <input type="button" value="K-Means search" onclick="chartCreate()">
+					  </div>
 					</form> 
 					<br>
+					<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 			</div>
 			<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..

@@ -41,6 +41,35 @@ if(str1==str2){
 	
 }
 </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+	function chartCreate(){
+	  google.charts.load('current', {
+        'packages':['geochart'],
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+	//K_Means(!!!!!!!!!!!ALLCountries!!!!!!!!!!,5,'Pos_Lati','Pos_Long');
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart(){	
+	var data = google.visualization.arrayToDataTable([
+        ['City',   'Population', 'Area'],
+        ['Rome',      2761477,    1285.31],
+        ['Milan',     1324110,    181.76],
+      ]);
+
+      var options = {
+        region: 'IT',
+        displayMode: 'markers',
+        colorAxis: {colors: ['green', 'red']}
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+      chart.draw(data, options);
+	};
+	
+	//var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
+	}
+</script>
 </head>
 	<body onload="GetCountryNames()">
 		<div id="container">
@@ -68,7 +97,7 @@ if(str1==str2){
 
 					 <form>
 					 <fieldset>
-						<legend>Επιλογή 2 χωρών:</legend>
+						<legend>Επιλογή 2 κέντρων:</legend>
 					  Κέντρο 1:<select id="center1">
 					  </select><br>
 					  Κέντρο 2:<select id="center2">
@@ -77,6 +106,7 @@ if(str1==str2){
 					  </fieldset>
 					</form> 
 					<br>
+					<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 			</div>
 			<div id="footer">
 					Hungry MILFS needs cock!! Only 100m away..
