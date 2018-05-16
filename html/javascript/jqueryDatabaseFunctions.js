@@ -26,6 +26,7 @@ $("#foo").submit(function(event)
 			}
 
 		);
+		
 
 
 		request.done(function(response,textStatus,jqXHR)
@@ -50,3 +51,43 @@ $("#foo").submit(function(event)
 			}
 		);
 	});
+
+/*
+
+
+function a()
+	for(5 fores)
+
+		ajax(pinaka);
+		shocharts
+		sleep(2)
+
+
+
+end
+
+php function
+	select *
+	
+
+	counter;
+
+	return
+end
+
+
+function a()
+
+	ajax
+
+end
+
+php function
+
+	loop
+		a[1]
+		a[2]
+
+	return a
+
+*/

@@ -17,6 +17,7 @@ var country_Name;
 function getCountryInfo(searchTerm)
 {
 	document.getElementById("wikiInfo").innerHTML = "";
+	
 
 	countryDictionary.countryName = searchTerm;
 
@@ -426,6 +427,50 @@ function SignUpUserFromDb()
 	//document.getElementById("submitForm").submit();
 }
 
+function K_Means(num)
+{
+	console.log(num);
+	console.log("gieaa");
+	if(request)
+	{
+		request.abort();
+	}
+
+	//console.log("geia sou  maria");
+
+	dataV = {};
+
+	dataV.crit1 = document.getElementById("criterion1");
+	dataV.crit2 = document.getElementById("criterion1");
+	dataV.forIf 
+
+	dataV.gini = 5;
+	dataV.type = 3;
+	dataV.sha1 = "K_Means";
+
+	console.log("K_Means");
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
+		dataType:"json",
+		data:dataV,
+		async:false,
+       	error: function( jqXhr, textStatus, errorThrown ){
+                    console.log(jqXhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                }
+	}).responseJSON;
+
+	alert(answer);
+		
+		
+	console.log(answer);	
+
+	//document.getElementById("submitForm").submit();
+}
 
 
 //Onoma tis xoras epistrofi se sinartisi se pinaka
