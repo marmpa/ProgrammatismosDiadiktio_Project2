@@ -311,10 +311,12 @@
 			die("Connection failed: " . $mysqli->connect_error);
 		}
 		
-		$sql = "SELECT Name From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
+		//$sql = "SELECT  From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
+		$sql = "SELECT Country_Name FROM Countries WHERE Country_Name";
+		//".$_POST['typeValue']."
+
+		//assuming 2
 		
-		
-		//bale kodika edo
 		
 		$result->free();
 		$mysqli->close();
