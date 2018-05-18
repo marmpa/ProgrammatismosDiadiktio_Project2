@@ -316,6 +316,43 @@
 		//".$_POST['typeValue']."
 
 		//assuming 2
+		//prosorina den leitougei.............
+		$temp='';
+		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries WHERE Country_Name in (";
+
+		$va = $_POST['values'];
+
+		//echo gettype($va);
+		foreach($va as &$values)
+		{
+			$sql .= $temp;
+			$sql .= '"'.$values.'"';
+			$temp=',';
+		}
+		$sql.=")";
+
+		//echo $sql . "pataaaates";
+		if($stmt = $mysqli->prepare($sql))
+		{
+			//echo "marios";
+			$stmt->bind_result($Country_Name,$typeValue);
+			$stmt->execute();
+		}
+
+		$row = null;
+		$countryArray = Array();
+		while($stmt->fetch())
+		{
+			$countryArray[] = Array($Country_Name, $typeValue);
+		}
+
+		$json_array = json_encode($countryArray);
+		
+
+		//$result->free();
+		$mysqli->close();
+
+		echo $json_array;
 		
 		
 		$result->free();
