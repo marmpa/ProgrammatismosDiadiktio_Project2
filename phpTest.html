@@ -1,16 +1,35 @@
 <head>
+	<style type="text/css">
+  .Fullscreen
+  {
+    position:absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Optional - just for DIV)*/
+    border: solid 1px #000000;
+    background-color:grey;
+  }
+</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script type="text/javascript">
-	$(document).ready(function()
+	/*$(document).ready(function()
 	{
 		$('#content').load("http://www.icsd.aegean.gr/icsd/prosopiko/members.php?category=dep&member=53");
 	}
 
-	);
+	);*/
+
+	function load_home() {
+		var site = "http://www.icsd.aegean.gr/icsd/prosopiko/members.php?category=dep&member=53";
+     document.getElementById("content").innerHTML='<object type="text/html" data="'+site+'" ></object>';
+	}
 		</script>
 </head>
 <body>
+	<a href="" onclick="load_home()"><div id="content" ></div></a>
 	
-	<div id="content"></div>
+	<!--<button onclick="load_home()">ff</button>-->
 </body>
