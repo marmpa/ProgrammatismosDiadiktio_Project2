@@ -1,35 +1,79 @@
 <head>
 	<style type="text/css">
-  .Fullscreen
-  {
-    position:absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    /* Optional - just for DIV)*/
-    border: solid 1px #000000;
-    background-color:grey;
-  }
+  
 </style>
+<link href="style.css" rel="stylesheet" type="text/css">
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<script type="text/javascript">
-	/*$(document).ready(function()
+	
+
+	
+	function load_url(link)
 	{
-		$('#content').load("http://www.icsd.aegean.gr/icsd/prosopiko/members.php?category=dep&member=53");
+
+		var site =link;
+		try
+		{
+			console.log(link);
+
+			var regexO = /\?member=(\d*)/i;//φτιάχνουμε μία κανονική έκφραση για να πάρουμε το νούμερο που αντιστοιχεί στον καθηγητή απο το url
+			var output = link.match(regexO)[1];
+
+			var htmlData = $.ajax({
+
+		    url: site,
+		    dataType: 'html',
+		    x : output,
+		    success: function(data) 
+		    {//κάνουμε ajax και πέρνουμε το html της σελίδα που αντιστοιχεί το url
+		         var div = document.createElement('div');//φτιάχνουμε και εισάγουμε τον κώδικα html της σελίδας σε ένα προσωρινό div
+		         div.innerHTML = data.trim();
+
+		         var divHTML = div.getElementsByClassName("pubs_journal");//παίρνουμε τον πίνακα με όνομα pubs_journal απο τον κώδικα 
+		         //ο οποίος περιέχει τις δημοσιεύσεις του καθηγητή
+		         
+		         document.getElementById("content").innerHTML="<h1>Καθηγητής με αριθμό "+this.x+"</h1><br><br>"+divHTML[0].innerHTML +"<br><br><br><br><br><br><br><br>";//βάζουμε στον κώδικα του στοιχείου με id content τον κώδικα του πίνακα
+
+		    },
+		    error: function(xhr, error)
+		    {
+		        
+	    	}});
+		}
+		catch(err)
+		{
+			console.log("not "+ link);
+		}	
+   
 	}
 
-	);*/
-
-	function load_home() {
-		var site = "http://www.icsd.aegean.gr/icsd/prosopiko/members.php?category=dep&member=53";
-     document.getElementById("content").innerHTML='<object type="text/html" data="'+site+'" ></object>';
-	}
+	
 		</script>
 </head>
 <body>
-	<a href="" onclick="load_home()"><div id="content" ></div></a>
+	<h1>Βάζεται μία διεύθυνση τύπου :"http://www.icsd.aegean.gr/icsd/prosopiko/print_pubs.php?member=60" και πατάτε enter (όπου 60 όποιοδήποτε έγκυρο αριθμό καθηγητή)<br><br></h1>
+	<input type="text" id="myInput" style="position: absolute; left: 45%">
+	<br><br>
+	<div id="content" ></div>
 	
-	<!--<button onclick="load_home()">ff</button>-->
+	
+	<script type="text/javascript">
+		
+		var input = document.getElementById("myInput");
+
+		input.addEventListener("keyup",function(event)
+		{//ελέγχουμε για το enter event όταν βρισκεται στο Input box
+			event.preventDefault();
+
+			if(event.keyCode === 13)
+			{
+				load_url(input.value);
+			}
+		}
+
+			)
+	</script>
 </body>
