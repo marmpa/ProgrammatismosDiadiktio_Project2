@@ -312,17 +312,18 @@
 		}
 		
 		//$sql = "SELECT  From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
-		$sql = "SELECT Country_Name FROM Countries WHERE Country_Name";
+		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries";
 		//".$_POST['typeValue']."
 
 		//assuming 2
 		//prosorina den leitougei.............
-		$temp='';
-		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries WHERE Country_Name in (";
+		
+		
 
-		$va = $_POST['values'];
+		
 
 		//echo gettype($va);
+		/*
 		foreach($va as &$values)
 		{
 			$sql .= $temp;
@@ -330,6 +331,7 @@
 			$temp=',';
 		}
 		$sql.=")";
+		*/
 
 		//echo $sql . "pataaaates";
 		if($stmt = $mysqli->prepare($sql))

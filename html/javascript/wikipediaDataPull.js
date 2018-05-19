@@ -427,7 +427,7 @@ function SignUpUserFromDb()
 	//document.getElementById("submitForm").submit();
 }
 
-function K_Means(num)
+function K_Means(num,typeValue)
 {
 	console.log(num);
 	console.log("gieaa");
@@ -442,7 +442,7 @@ function K_Means(num)
 
 	dataV.crit1 = document.getElementById("criterion1");
 	dataV.crit2 = document.getElementById("criterion1");
-	dataV.forIf 
+	dataV.typeValue = typeValue;
 
 	dataV.gini = 5;
 	dataV.type = 3;
