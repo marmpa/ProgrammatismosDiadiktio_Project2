@@ -348,6 +348,22 @@
 			$countryArray[] = Array($Country_Name, $typeValue);
 		}
 
+		//Brisko tixaia ta kentra
+		$randomCenter1 = rand(0,sizeof($countryArray));
+		while(($randomCenter2 = rand(0,sizeof($countryArray))) == $randomCenter1){}
+		//.......................
+
+		//Anathesi ton ipolipon xoron stin omada me tin mikroteri apostasi apo to kentro tis
+
+		foreach ($countryArray as $key => $value) 
+		{
+			//V((xora.lat - kentro.lat)^2 + (xora.lon - kentro.lon)^2)
+			var $distanceFromCenter = sqrt();
+		}
+
+
+
+
 		$json_array = json_encode($countryArray);
 		
 
