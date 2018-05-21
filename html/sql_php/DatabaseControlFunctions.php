@@ -23,7 +23,7 @@
 
 		echo (str_replace("$","",$_POST['GPD']));
 
-		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".intval($_POST['area']).",".floatval($_POST['population']).",".floatval(str_replace("$","",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
+		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".intval(str_replace(",","",$_POST['area'])).",".floatval(str_replace(",","",$_POST['population'])).",".floatval(str_replace(["$",","],"",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
 		//$sql = "SELECT * FROM Countries";
 
 
