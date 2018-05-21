@@ -69,8 +69,14 @@ $.getJSON(site,function(json)
 
 		var patternTest = /Gini\s=\s((\d*\.)?\d+)/i;
 
-		countryDictionary.coordX = splittedArray[1] +" "+splittedArray[2]+" "+splittedArray[3]; 
-		countryDictionary.coordY = splittedArray[4] +" "+splittedArray[5]+" "+splittedArray[6];
+		countryDictionary.coordX = (parseInt(splittedArray[1])+(parseInt(splittedArray[2])/60)).toString();
+		countryDictionary.coordY = (parseInt(splittedArray[4])+(parseInt(splittedArray[4])/60)).toString();
+
+		//countryDictionary.coordX = splittedArray[1] +" "+splittedArray[2];//+" "+splittedArray[3]; 
+		//countryDictionary.coordY = splittedArray[4] +" "+splittedArray[5];//+" "+splittedArray[6];
+
+
+
 		countryDictionary.capitalName = wikiString.match(patternCapital)[1];
 		countryDictionary.area = wikiString.match(patternArea)[1];
 		try
