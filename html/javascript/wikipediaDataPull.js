@@ -33,6 +33,7 @@ function getCountryInfo(searchTerm)
 		
 		
 		flagImg = "<img src=\"https:"+tempArrayFlagInfo[2]+"\" alt=\""+tempArrayFlagInfo[1]+"\">";
+		countryDictionary.flagUrl = "https:"+tempArrayFlagInfo[2];
 		//flagImg1 = "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/125px-Flag_of_Greece.svg.png\" + alt=\""+tempArrayFlagInfo[1]+"\">";
 		
 		console.log(flagImg);
@@ -86,6 +87,8 @@ $.getJSON(site,function(json)
 		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
 		countryDictionary.HDI = wikiString.match(patternHDI)[1];
 		countryDictionary.gini = wikiString.match(patternGini)[1];
+
+
 
 		
 

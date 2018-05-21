@@ -23,7 +23,7 @@
 
 		echo (str_replace("$","",$_POST['GPD']));
 
-		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','"."tempFlag"."','". $_POST['coordX']."','".$_POST['coordY']."',".intval(str_replace(",","",$_POST['area'])).",".floatval(str_replace(",","",$_POST['population'])).",".floatval(str_replace(["$",","],"",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
+		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','".$_POST('flagUrl')."','". $_POST['coordX']."','".$_POST['coordY']."',".intval(str_replace(",","",$_POST['area'])).",".floatval(str_replace(",","",$_POST['population'])).",".floatval(str_replace(["$",","],"",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
 		//$sql = "SELECT * FROM Countries";
 
 
@@ -358,7 +358,8 @@
 		foreach ($countryArray as $key => $value) 
 		{
 			//V((xora.lat - kentro.lat)^2 + (xora.lon - kentro.lon)^2)
-			//var $distanceFromCenter = sqrt();
+			//var $distanceFromCenter = sqrt(pow());
+
 		}
 
 
