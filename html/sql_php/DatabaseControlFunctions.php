@@ -358,7 +358,7 @@
 		foreach ($countryArray as $key => $value) 
 		{
 			//V((xora.lat - kentro.lat)^2 + (xora.lon - kentro.lon)^2)
-			var $distanceFromCenter = sqrt();
+			//var $distanceFromCenter = sqrt();
 		}
 
 

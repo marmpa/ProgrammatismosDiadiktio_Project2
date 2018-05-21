@@ -41,7 +41,7 @@ jsonCountryData = [
   {name: 'Cape Verde', code: 'CV'}, 
   {name: 'Cayman Islands', code: 'KY'}, 
   {name: 'Central African Republic', code: 'CF'}, 
-  {name: 'Chad', code: 'TD',} 
+  {name: 'Chad', code: 'TD',}, 
   {name: 'Chile', code: 'CL'}, 
   {name: 'China', code: 'CN'}, 
   {name: 'Christmas Island', code: 'CX'}, 
