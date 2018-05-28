@@ -312,7 +312,7 @@
 		}
 		
 		//$sql = "SELECT  From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
-		$sql = "SELECT Country_Name,".$_POST['typeValue']." FROM Countries";
+		$sql = "SELECT Country_Name,".$_POST['typeValue1'].",".$_POST['typeValue2']." FROM Countries";
 		//".$_POST['typeValue']."
 
 		//assuming 2
@@ -337,7 +337,7 @@
 		if($stmt = $mysqli->prepare($sql))
 		{
 			//echo "marios";
-			$stmt->bind_result($Country_Name,$typeValue);
+			$stmt->bind_result($Country_Name,$column1,$column2);
 			$stmt->execute();
 		}
 
@@ -345,27 +345,87 @@
 		$countryArray = Array();
 		while($stmt->fetch())
 		{
-			$countryArray[] = Array($Country_Name, $typeValue);
+			$countryArray[] = Array($Country_Name, $column1,$column2);
 		}
 
 		//Brisko tixaia ta kentra
-		$randomCenter1 = rand(0,sizeof($countryArray));
-		while(($randomCenter2 = rand(0,sizeof($countryArray))) == $randomCenter1){}
+		$Center1 = rand(0,sizeof($countryArray));
+		while(($Center2 = rand(0,sizeof($countryArray))) == $Center1){}
 		//.......................
 
 		//Anathesi ton ipolipon xoron stin omada me tin mikroteri apostasi apo to kentro tis
+		
 
-		foreach ($countryArray as $key => $value) 
-		{
-			//V((xora.lat - kentro.lat)^2 + (xora.lon - kentro.lon)^2)
-			//var $distanceFromCenter = sqrt(pow());
 
+		$NewCenterLat1=countryArray[$Center1][1];
+		$NewCenterLon1=countryArray[$Center1][2];
+
+		$NewCenterLat2=countryArray[$Center2][1];
+		$NewCenterLon2=countryArray[$Center2][2];
+
+	
+		$FinalCountryArray = new Array()
+
+
+
+		#Loop
+		for ($i=0; $i < $_POST['forLoop']; $i++) 
+		{ 
+			$team1 = Array();
+			$team2 = Array();
+				
+			$CenterSumLat1 = 0;
+			$CenterSumLon1 = 0;
+			
+
+			$CenterSumLat2 = 0;
+			$CenterSumLon2 = 0;
+
+			foreach ($countryArray as $key => $value) 
+			{
+				
+				var $distanceFromCenter1 = sqrt(pow($value[1] - $NewCenterLat1,2) + pow($value[2] - $NewCenterLon1,2));
+				var $distanceFromCenter2 = sqrt(pow($value[1] - $NewCenterLat2,2) + pow($value[2] - $NewCenterLon2,2));
+
+
+				if($distanceFromCenter1>=$distanceFromCenter2)
+				{
+					$team1[] = $value;
+
+					$CenterSumLat1 += $value[1];
+					$CenterSumLon1 += $value[2];
+				}
+				else
+				{
+					$team2[] = $value;
+
+					$CenterSumLat2 += $value[1];
+					$CenterSumLon2 += $value[2];
+				}
+			}
+
+			$FinalCountryArray[] = new Array($team1,$team2)
+
+			if(i>0)
+			{
+				if($FinalCountryArray[i-1][0]==$FinalCountryArray[i][0])
+				{
+					break;
+				}
+			}
+
+
+			$NewCenterLat1 = $CenterSumLat1/sizeof($team1);
+			$NewCenterLon1 = $CenterSumLon1/sizeof($team1);
+
+			$NewCenterLat2 = $CenterSumLat2/sizeof($team2);
+			$NewCenterLon2 = $CenterSumLon2/sizeof($team2);
 		}
+		
 
 
 
-
-		$json_array = json_encode($countryArray);
+		$json_array = json_encode($FinalCountryArray);
 		
 
 		//$result->free();
