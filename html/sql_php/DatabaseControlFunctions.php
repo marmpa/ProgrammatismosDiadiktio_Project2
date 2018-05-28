@@ -21,9 +21,9 @@
 			die("Connection failed: " . $mysqli->connect_error);
 		}
 
-		echo (str_replace("$","",$_POST['GPD']));
+		//echo (str_replace("$","",$_POST['GPD']));
 
-		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','".$_POST('flagUrl')."','". $_POST['coordX']."','".$_POST['coordY']."',".intval(str_replace(",","",$_POST['area'])).",".floatval(str_replace(",","",$_POST['population'])).",".floatval(str_replace(["$",","],"",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
+		$sql = "INSERT into Countries values('".$_POST['countryName']."','".$_POST['capitalName']."','".$_POST['flagUrl']."','". $_POST['coordX']."','".$_POST['coordY']."',".intval(str_replace(",","",$_POST['area'])).",".floatval(str_replace(",","",$_POST['population'])).",".floatval(str_replace(["$",","],"",$_POST['GPD'])).",".floatval($_POST['HDI']).",".floatval($_POST['gini']).")";
 		//$sql = "SELECT * FROM Countries";
 
 
@@ -48,8 +48,8 @@
 			}
 		}
 
-		$result->free();
-		$mysqli->close();
+		//$result->free();
+		//$mysqli->close();
 
 	
 
@@ -357,14 +357,14 @@
 		
 
 
-		$NewCenterLat1=countryArray[$Center1][1];
-		$NewCenterLon1=countryArray[$Center1][2];
+		$NewCenterLat1=$countryArray[$Center1][1];
+		$NewCenterLon1=$countryArray[$Center1][2];
 
-		$NewCenterLat2=countryArray[$Center2][1];
-		$NewCenterLon2=countryArray[$Center2][2];
+		$NewCenterLat2=$countryArray[$Center2][1];
+		$NewCenterLon2=$countryArray[$Center2][2];
 
 	
-		$FinalCountryArray = new Array()
+		$FinalCountryArray = Array();
 
 
 
@@ -384,11 +384,11 @@
 			foreach ($countryArray as $key => $value) 
 			{
 				
-				var $distanceFromCenter1 = sqrt(pow($value[1] - $NewCenterLat1,2) + pow($value[2] - $NewCenterLon1,2));
-				var $distanceFromCenter2 = sqrt(pow($value[1] - $NewCenterLat2,2) + pow($value[2] - $NewCenterLon2,2));
+				$distanceFromCenter1 = sqrt(pow($value[1] - $NewCenterLat1,2) + pow($value[2] - $NewCenterLon1,2));
+				$distanceFromCenter2 = sqrt(pow($value[1] - $NewCenterLat2,2) + pow($value[2] - $NewCenterLon2,2));
 
 
-				if($distanceFromCenter1>=$distanceFromCenter2)
+				if($distanceFromCenter1<=$distanceFromCenter2)
 				{
 					$team1[] = $value;
 
@@ -404,22 +404,28 @@
 				}
 			}
 
-			$FinalCountryArray[] = new Array($team1,$team2)
+			$FinalCountryArray[] = Array($team1,$team2);
 
-			if(i>0)
+			if($i>0)
 			{
-				if($FinalCountryArray[i-1][0]==$FinalCountryArray[i][0])
+				if($FinalCountryArray[$i-1][0]==$FinalCountryArray[$i][0])
 				{
 					break;
 				}
 			}
 
+			if(sizeof($team1)!=0)
+			{
+				$NewCenterLat1 = $CenterSumLat1/sizeof($team1);
+				$NewCenterLon1 = $CenterSumLon1/sizeof($team1);
+			}
+			
 
-			$NewCenterLat1 = $CenterSumLat1/sizeof($team1);
-			$NewCenterLon1 = $CenterSumLon1/sizeof($team1);
-
-			$NewCenterLat2 = $CenterSumLat2/sizeof($team2);
-			$NewCenterLon2 = $CenterSumLon2/sizeof($team2);
+			if(sizeof($team2)!=0)
+			{
+				$NewCenterLat2 = $CenterSumLat2/sizeof($team2);
+				$NewCenterLon2 = $CenterSumLon2/sizeof($team2);
+			}
 		}
 		
 
@@ -434,8 +440,8 @@
 		echo $json_array;
 		
 		
-		$result->free();
-		$mysqli->close();
+		//$result->free();
+		//$mysqli->close();
 	}
 	
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))

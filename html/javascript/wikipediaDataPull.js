@@ -41,7 +41,7 @@ function getCountryInfo(searchTerm)
 		//$("#wikiInfo").append(flagImg1+"</br>");
 	});
 
-	var site = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles="+searchTerm+"&rvsection=0";
+	var site = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&origin=*&titles="+searchTerm+"&rvsection=0";
 
 $.getJSON(site,function(json)
 	{
@@ -470,8 +470,8 @@ function K_Means(num,typeValue1,typeValue2)
 		async:false,
        	error: function( jqXhr, textStatus, errorThrown ){
                     console.log(jqXhr);
-                    //console.log(textStatus);
-                    //console.log(errorThrown);
+                    console.log(textStatus);
+                    console.log(errorThrown);
                 }
 	}).responseJSON;
 
