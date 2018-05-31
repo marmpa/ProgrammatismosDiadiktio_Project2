@@ -440,7 +440,7 @@ function SignUpUserFromDb()
 	//document.getElementById("submitForm").submit();
 }
 
-function K_Means(num,typeValue1,typeValue2)
+function K_Means(num,typeValue1,typeValue2,countryList)
 {
 	console.log(num);
 	console.log("gieaa");
@@ -453,8 +453,11 @@ function K_Means(num,typeValue1,typeValue2)
 
 	dataV = {};
 
-	//dataV.crit1 = document.getElementById("criterion1");
-	//dataV.crit2 = document.getElementById("criterion2");
+	dataV.countryList = (typeof(countryList)==typeof(true)?[]:countryList);
+
+	dataV.center1 = (document.getElementById("center1").value !== null?document.getElementById("center1").value:"errorRSA");
+	dataV.center2 = (document.getElementById("center2").value !== null?document.getElementById("center2").value:"errorRSA");
+
 	dataV.typeValue1 = typeValue1;
 	dataV.typeValue2 = typeValue2;
 	dataV.forLoop = num;
