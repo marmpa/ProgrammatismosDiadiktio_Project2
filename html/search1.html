@@ -16,7 +16,7 @@
 			var value1=document.getElementById("center2").selectedIndex;
 			if(str1==str2){
 				do{
-					var rand=Math.floor(Math.random()*arrayC.lenght);
+					var rand=Math.floor(Math.random()*arrayC.length);
 				}while(rand==value1);
 				x2.selectedIndex=rand;
 			}
@@ -32,14 +32,14 @@
 			var str2 = x2.options[x2.selectedIndex].text;
 			var value1=document.getElementById("center1").selectedIndex;
 			if(str1==str2){
-
 				do{
-					var rand=Math.floor(Math.random()*arrayC.lenght);
+					var rand=Math.floor(Math.random()*arrayC.length);
 				}while(rand==value1);
 				x1.selectedIndex=rand;
 			}
 
 		}
+
 		function sleep(ms)
 		{
 			return new Promise(resolve => setTimeout(resolve,ms));
@@ -91,8 +91,10 @@
 
 
 					var options = {
-    //displayMode: 'markers',
-    colorAxis: {colors: ['green', 'red']}
+						showTooltip: true,
+						showInfoWindow: true,
+    					//displayMode: 'markers',
+    				colorAxis: {colors: ['green', 'red']}
 };
 
 var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));

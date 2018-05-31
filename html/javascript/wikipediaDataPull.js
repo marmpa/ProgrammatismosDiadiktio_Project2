@@ -34,11 +34,9 @@ function getCountryInfo(searchTerm)
 		
 		flagImg = "<img src=\"https:"+tempArrayFlagInfo[2]+"\" alt=\""+tempArrayFlagInfo[1]+"\">";
 		countryDictionary.flagUrl = "https:"+tempArrayFlagInfo[2];
-		//flagImg1 = "<img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Greece.svg/125px-Flag_of_Greece.svg.png\" + alt=\""+tempArrayFlagInfo[1]+"\">";
-		
+
 		console.log(flagImg);
 		$("#wikiInfo").append(flagImg+"</br>");
-		//$("#wikiInfo").append(flagImg1+"</br>");
 	});
 
 	var site = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&origin=*&titles="+searchTerm+"&rvsection=0";
@@ -62,21 +60,11 @@ $.getJSON(site,function(json)
 
 
 		var splittedArray = wikiString.match(patternCoordinates)[1].split('|');
-		
-		
-		
-		//console.log(coordX+" yep "+coordY);
 
 		var patternTest = /Gini\s=\s((\d*\.)?\d+)/i;
 
 		countryDictionary.coordX = (parseInt(splittedArray[1])+(parseInt(splittedArray[2])/60)).toString();
 		countryDictionary.coordY = (parseInt(splittedArray[4])+(parseInt(splittedArray[4])/60)).toString();
-
-		//countryDictionary.coordX = splittedArray[1] +" "+splittedArray[2];//+" "+splittedArray[3]; 
-		//countryDictionary.coordY = splittedArray[4] +" "+splittedArray[5];//+" "+splittedArray[6];
-
-
-
 		countryDictionary.capitalName = wikiString.match(patternCapital)[1];
 		countryDictionary.area = wikiString.match(patternArea)[1];
 		try
@@ -87,21 +75,13 @@ $.getJSON(site,function(json)
 		{
 			countryDictionary.population = wikiString.match(patternPopulationS)[2];
 		}
-
-		
 		
 		countryDictionary.GPD = wikiString.match(patternGDPpC)[1];
 		countryDictionary.HDI = wikiString.match(patternHDI)[1];
 		countryDictionary.gini = wikiString.match(patternGini)[1];
 
-
-
-		
-
 		console.log(countryDictionary.population);
 		console.log(JSON.stringify(wikiHTML).match(patternGini)[1]+" Geia sou maria");
-		//console.log(JSON.stringify(wikiHTML));
-
 
 		$("#wikiInfo").append("Όνομα προτεύουσας : "+countryDictionary.capitalName+"</br>");
 		$("#wikiInfo").append("Γεογραφικό στίγμα Χ : "+countryDictionary.coordX+"</br>");
@@ -111,25 +91,11 @@ $.getJSON(site,function(json)
 		{
 			$("#wikiInfo").append("Πλυθυσμός : "+countryDictionary.population+"</br>");
 		}
-		catch(err)
-		{
-			//$("#wikiInfo").append("Πλυθυσμός : "+wikiString.match(patternPopulation)[1]+"</br>");
-		}
+		catch(err){}
 		
 		$("#wikiInfo").append("GPD per capita : "+countryDictionary.GPD+"</br>");
 		$("#wikiInfo").append("HDI : "+countryDictionary.HDI+"</br>");
 		$("#wikiInfo").append("Gini : "+countryDictionary.gini+"</br>");
-
-		//$wikiDOM = $("<document>"+wikiHTML+"</document>");
-		//$("#wikiInfo").append($wikiDOM.find('.infobox').html());
-		//console.log("Hello    "+document.getElementById('wikiInfo').innerHTML);
-
-		//var a = json.parse.text['*'];
-		//$('#wikiInfo').html(json.parse.text['*']);
-		//$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
-		//$('#wikiInfo').find("a").attr("target", "_blank");
-
-
 	});
 
 }
@@ -148,15 +114,6 @@ function InsertToDB()
 		{
 			return;
 		}
-		
-
-		//var $form = $(this);
-
-		//var $inputs = $form.find("input, select, button, textarea");
-
-		//var serializedData = $form.serialize();
-
-		//$inputs.prop("disabled",true);
 
 		request = $.ajax(
 			{
@@ -191,30 +148,16 @@ function InsertToDB()
 
 
 		request.always(function ()
-			{
-		//		$inputs.prop("disabled",false);
-			}
+			{}
 		);
 }
 
 function GetCountryNames()
 {
-	//var Country_Names = Array();
-		document.getElementById("center2").selectedValue = 1;
 		if(request)
 		{
 			request.abort();
 		}
-
-		
-
-		//var $form = $(this);
-
-		//var $inputs = $form.find("input, select, button, textarea");
-
-		//var serializedData = $form.serialize();
-
-		//$inputs.prop("disabled",true);
 
 		cc = {};
 		cc.gini = 5;
@@ -229,8 +172,6 @@ function GetCountryNames()
 				data : cc,
 					success: function(result) 
 					{
-            			
-            			//var arrayObj = <?php echo $json_array; ?>
             			Country_Names = result;
             			console.log(Country_Names);
        				 },
@@ -251,14 +192,8 @@ function GetCountryNames()
 		);
 		console.log(Country_Names.responseJSON);
 
-		
-
-
-
 		request.always(function ()
-			{
-		//		$inputs.prop("disabled",false);
-			}
+			{}
 		);
 
 		
@@ -268,13 +203,10 @@ function GetCountryNames()
 
 function GetCountryNamesC()
 {
-	//console.log("marios");
 	if(request)
 	{
 		request.abort();
 	}
-
-	//console.log("geia sou  maria");
 
 	dataV = {};
 	dataV.gini = 5;
@@ -299,21 +231,16 @@ function GetCountryNamesC()
 	}).responseJSON;
 
 	console.log(answer);
-	//console.log(answer);	
 
 	return answer;
 }
 
 function GetCountryAndFeatures(values,typeData)
 {
-	console.log("naiii breeeeeeeeeee");
 	if(request)
 	{
 		request.abort();
 	}
-
-	console.log(values);
-	console.log("naiii");
 
 	dataV = {};
 	dataV.typeValue = typeData;
@@ -349,8 +276,6 @@ function InsertUserToDb()
 		request.abort();
 	}
 
-	//console.log("geia sou  maria");
-
 	var dataV = {};
 
 	dataV.fname = document.getElementById("fname").value;
@@ -363,8 +288,6 @@ function InsertUserToDb()
 	dataV.gini = 5;
 	dataV.type = 3;
 	dataV.sha1 = "InsertUser";
-
-	console.log("InsertData");
 
 	try
 	{
@@ -388,11 +311,6 @@ function InsertUserToDb()
 	{
 		console.log(err.message);
 	}
-	
-		
-	//console.log(answer);	
-
-	//return answer;
 }
 
 function SignUpUserFromDb()
@@ -402,16 +320,10 @@ function SignUpUserFromDb()
 		request.abort();
 	}
 
-	//console.log("geia sou  maria");
-
 	dataV = {};
 
 	dataV.email = document.getElementById("email_sign").value;
 	dataV.pwd = document.getElementById("pwd_sign").value;
-
-	console.log(dataV.email);
-	console.log(dataV.pwd);
-
 
 	dataV.gini = 5;
 	dataV.type = 3;
@@ -428,36 +340,25 @@ function SignUpUserFromDb()
 		async:false,
        	error: function( jqXhr, textStatus, errorThrown ){
                     console.log(jqXhr);
-                    //console.log(textStatus);
-                    //console.log(errorThrown);
                 }
 	}).responseText;
 
-	//alert(answer);
-		
-		
 	console.log(answer);	
-
-	//document.getElementById("submitForm").submit();
 }
 
 function K_Means(num,typeValue1,typeValue2,countryList)
 {
-	console.log(num);
-	console.log("gieaa");
 	if(request)
 	{
 		request.abort();
 	}
-
-	//console.log("geia sou  maria");
-
 	dataV = {};
+	dataV.countryList = (typeof(countryList)==typeof(true)?567:countryList);
 
-	dataV.countryList = (typeof(countryList)==typeof(true)?[]:countryList);
+	dataV.center1 = (document.getElementById("center1") !== null?parseInt(document.getElementById("center1").value):"errorRSA");
+	dataV.center2 = (document.getElementById("center2") !== null?parseInt(document.getElementById("center2").value):"errorRSA");
 
-	dataV.center1 = (document.getElementById("center1").value !== null?document.getElementById("center1").value:"errorRSA");
-	dataV.center2 = (document.getElementById("center2").value !== null?document.getElementById("center2").value:"errorRSA");
+	
 
 	dataV.typeValue1 = typeValue1;
 	dataV.typeValue2 = typeValue2;
@@ -485,29 +386,7 @@ function K_Means(num,typeValue1,typeValue2,countryList)
                 }
 	}).responseJSON;
 
-	//alert(answer);
-		
-		
 	console.log(answer);	
 
-	//document.getElementById("submitForm").submit();
 	return answer;
 }
-
-
-//Onoma tis xoras epistrofi se sinartisi se pinaka
-
-
-//http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=google&rvsection=0
-// original working: http://en.wikipedia.org/w/api.php?action=parse&page=google&prop=text&format=json&callback=?
-
-//kinda works 8:32
-
-/*$.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=google&prop=text&format=json&callback=?',function(json)
-					{
-						$('#wikiInfo').html(json.parse.text['*']);
-						$('#wikiInfo').find("a:not(.references a)").attr("href", function(){return "http://www.wikipedia.org" + $(this).attr("href");});
-						$('#wikiInfo').find("a").attr("target", "_blank");
-					})*/
-
-					//to parapano leitourgei mesa sto test.html

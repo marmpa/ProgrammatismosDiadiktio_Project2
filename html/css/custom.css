@@ -41,3 +41,35 @@
 	ul {
 	padding-left:25px;
 	}
+#txtCountry {
+    border-radius: 0px;
+    background: #e6ffff;
+    color: #212121;
+    border: 1px solid #454545
+}
+#txtCountry:hover {
+    background: #e6ffff;
+    cursor: pointer;
+}
+#txtCountry:active {
+    box-shadow: 0 0 30px #b3ffff
+}
+.ui-tooltip {
+    background: #e6ffff;
+    color: #b3ffff;
+    border: 2px solid #454545;
+    border-radius: 0px;
+    box-shadow: 0 0 
+}
+.ui-autocomplete {
+    background: #e6ffff;
+    border-radius: 0px;
+}
+.ui-autocomplete.source:hover {
+    background: #e6ffff;
+}
+
+.ui-menu .ui-menu-item a{
+    background:red;
+    height:10px;
+font-size:8px;}

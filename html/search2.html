@@ -69,8 +69,8 @@
 		function chartCreate()
 		{	
 			var feature1=document.getElementById("criterion1").selectedIndex;
-			var feature2=document.getElementById("criterion1").selectedIndex;
-			var features = ["Area", "Population", "GPD", "HDI", "Gini"];
+			var feature2=document.getElementById("criterion2").selectedIndex;
+			var features = ["GPD", "HDI", "Gini"];
 			var str1 = features[feature1];
 			var str2 = features[feature2];
 
@@ -88,114 +88,113 @@
 			google.charts.setOnLoadCallback(drawChart);
 			async function drawChart(){
 				teamSplit=[];
-
-				for(var x=0;x<teams.length;x++)
-				{
-					teamSplit[x]=[];
-					teamSplit[x][0]=[];
+					teamSplit[teams.length-1]=[];
+					teamSplit[teams.length-1][0]=[];
 
 					var y=0;
-					for(var z=0;z<teams[x][0].length;z++)
+					for(var z=0;z<teams[teams.length-1][0].length;z++)
 					{
-						teamSplit[x][z] = []
-						teamSplit[x][z][0] = teams[x][0][z][0];
-						teamSplit[x][z][1] = 1;
+						teamSplit[teams.length-1][z] = []
+						teamSplit[teams.length-1][z][0] = teams[teams.length-1][0][z][0];
+						teamSplit[teams.length-1][z][1] = teams[teams.length-1][0][z][1];
+						teamSplit[teams.length-1][z][2] = teams[teams.length-1][0][z][2];
+						teamSplit[teams.length-1][z][3] = 1;
+						teamSplit[teams.length-1][z][4] = teams[teams.length-1][0][z][3];
 						y=z;
 					}
 					y+=1;
 
-					for(var z=0;z<teams[x][1].length;z++)
+					for(var z=0;z<teams[teams.length-1][1].length;z++)
 					{
-						teamSplit[x][z+y] = []
-						teamSplit[x][z+y][0] = teams[x][1][z][0];
-						teamSplit[x][z+y][1] = 2;
+						teamSplit[teams.length-1][z+y] = []
+						teamSplit[teams.length-1][z+y][0] = teams[teams.length-1][1][z][0];
+						teamSplit[teams.length-1][z+y][1] = teams[teams.length-1][1][z][1];
+						teamSplit[teams.length-1][z+y][2] = teams[teams.length-1][1][z][2];
+						teamSplit[teams.length-1][z+y][3] = 2;
+						teamSplit[teams.length-1][z+y][4] = teams[teams.length-1][1][z][3];
 					}
-
-				}
-				for(var x=0;x<teamSplit.length;x++)
-				{
-					var countriesArray = [];
-					countriesArray.push(['Country', 'Team']);
-					countriesArray = countriesArray.concat(teamSplit[x]);
-					console.log(countriesArray);
-					var data = google.visualization.arrayToDataTable(countriesArray);
+				var countriesArray = [];
+				countriesArray.push(['Country', str1, str2, 'Team', 'Population']);
+				countriesArray = countriesArray.concat(teamSplit[teamSplit.length-1]);
+				console.log(countriesArray);
+				var data = google.visualization.arrayToDataTable(countriesArray);
 
 
-					var options = {
-						title: 'Bubble Chart!',
-						hAxis: {title: 'Countries'},
-						vAxis: {title: 'Features'},
-						bubble: {textStyle: {fontSize: 11}},
-						colorAxis: {colors: ['green', 'red']}
-					};
+				var options = {
+					title: 'Bubble Chart!',
+					hAxis: {title: str1},
+					vAxis: {title: str2},
+					bubble: {textStyle: {fontSize: 11}},
+					colorAxis: {colors: ['green', 'red']},
+					sizeAxis:{maxSize:40,minSize:15}
+				};
 
-					var chart = new google.visualization.BubbleChart(document.getElementById('regions_div'));
-					chart.draw(data, options);
-					await sleep(5000);}
-				}
+				var chart = new google.visualization.BubbleChart(document.getElementById('regions_div'));
+				chart.draw(data, options);
 			}
-		</script>
-		<style>
-		.scrollList {
-			height:10%;
-			width:30%;
-			overflow:auto;
-			wrap:soft;
-			text-align: left;
 		}
+	</script>
+	<style>
+	.scrollList {
+		height:10%;
+		width:30%;
+		overflow:auto;
+		wrap:soft;
+		text-align: left;
+	}
 
-		#rightElements {
-			position: absolute;
-			right: 15%;
-			top: 20%;
-		}</style>
-	</head>
-	<body onload="insertcountries()">
-		<div id="container">
-			<div id="header">
-				<h1>Pornhub</h1>
-			</div>
-			<div id="menu">
-				<b>Menu</b>
-				<ul>
-					<li><a href="login.html">Σύνδεση</a></li>
-					<li><a href="profil.php">Προφίλ</a></li>
-					<li><a href="country.html">Επιλογή χώρας</a></li>
-					<li><a href="charts.html">Εμφάνιση γραφημάτων</a></li>
-				</ul>
-				<b>Ομαδοποιήσεις</b>
-				<ul>
-					<li><a href="search1.html">Βάση γεωργαφικής περιοχής</a></li>
-					<li><a href="search2.html">Βάση άλλων στοιχείων</a></li>
-				</ul>
-			</div>
-
-			<div id="content">
-				<h1>Free porn from every country in the planet</h1>
-				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
-
-				<form>
-					<div class="scrollList" id="countryList"></div>
-					<div id="rightElements">
-						Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
-							<option value="criterion11">GDP per capita</option>
-							<option value="criterion12">HDI (Human Development Index)</option>
-							<option value="criterion13">Gini Coefficient</option>
-						</select><br>
-						Κριτήριο 2:<select id="criterion2" onchange="criterio2()">			  
-							<option value="criterion21">GDP per capita</option>
-							<option value="criterion22"selected>HDI (Human Development Index)</option>
-							<option value="criterion23">Gini Coefficient</option>
-						</select><br>
-						<input type="button" value="K-Means search" onclick="chartCreate()">
-					</div>
-				</form> 
-				<br>
-				<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
-			</div>
-			<div id="footer">
-				Hungry MILFS needs cock!! Only 100m away..
-			</div>
+	#rightElements {
+		position: absolute;
+		right: 15%;
+		top: 20%;
+	}</style>
+</head>
+<body onload="insertcountries()">
+	<div id="container">
+		<div id="header">
+			<h1>Pornhub</h1>
 		</div>
-	</body>
-	</html> 
+		<div id="menu">
+			<b>Menu</b>
+			<ul>
+				<li><a href="login.html">Σύνδεση</a></li>
+				<li><a href="profil.php">Προφίλ</a></li>
+				<li><a href="country.html">Επιλογή χώρας</a></li>
+				<li><a href="charts.html">Εμφάνιση γραφημάτων</a></li>
+			</ul>
+			<b>Ομαδοποιήσεις</b>
+			<ul>
+				<li><a href="search1.html">Βάση γεωργαφικής περιοχής</a></li>
+				<li><a href="search2.html">Βάση άλλων στοιχείων</a></li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<h1>Free porn from every country in the planet</h1>
+			<p>Enjoy premium 4K videos with only 0.99$ per month</p>
+
+			<form>
+				<div class="scrollList" id="countryList"></div>
+				<div id="rightElements">
+					Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
+						<option value="criterion11">GDP per capita</option>
+						<option value="criterion12">HDI (Human Development Index)</option>
+						<option value="criterion13">Gini Coefficient</option>
+					</select><br>
+					Κριτήριο 2:<select id="criterion2" onchange="criterio2()">			  
+						<option value="criterion21">GDP per capita</option>
+						<option value="criterion22"selected>HDI (Human Development Index)</option>
+						<option value="criterion23">Gini Coefficient</option>
+					</select><br>
+					<input type="button" value="K-Means search" onclick="chartCreate()">
+				</div>
+			</form> 
+			<br>
+			<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
+		</div>
+		<div id="footer">
+			Hungry MILFS needs cock!! Only 100m away..
+		</div>
+	</div>
+</body>
+</html> 
