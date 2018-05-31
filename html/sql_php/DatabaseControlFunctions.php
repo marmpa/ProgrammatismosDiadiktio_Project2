@@ -31,17 +31,6 @@
 			echo "Error " .$sql . "<br>" . $mysqli->error;
 		}
 
-		$sql = "SELECT * FROM Countries where Country_Name=".$_POST['countryName']."";
-
-		$result = $mysqli->query($sql);
-
-		if($result->num_rows > 0)
-		{
-			while($row = $result->fetch_assoc())
-			{
-				print_r(array_values($row));
-			}
-		}
 	}
 
 	function GetCountriesInDB()
@@ -308,6 +297,9 @@
 	
 		$FinalCountryArray = Array();
 
+		session_start();
+		$toSessionArray = Array();
+
 		for ($i=0; $i < $_POST['forLoop']; $i++) 
 		{ 
 			$team1 = Array();
@@ -357,6 +349,8 @@
 			{
 				$NewCenterLat1 = $CenterSumLat1/sizeof($team1);
 				$NewCenterLon1 = $CenterSumLon1/sizeof($team1);
+
+
 			}
 			
 
@@ -365,7 +359,10 @@
 				$NewCenterLat2 = $CenterSumLat2/sizeof($team2);
 				$NewCenterLon2 = $CenterSumLon2/sizeof($team2);
 			}
+
+			$toSessionArray[] = Array($NewCenterLat1,$NewCenterLon1,$NewCenterLat2,$NewCenterLon2);
 		}
+		$_SESSION['centersArray'] = $toSessionArray;
 		
 
 
@@ -381,6 +378,19 @@
 		
 		
 		
+	}
+
+	function GetFromSession()
+	{
+
+		session_start();
+
+		if(isset($_SESSION['centersArray']))
+		{
+			$json_array = json_encode($_SESSION['centersArray']);
+			echo $json_array;
+		}
+
 	}
 	
 	if(isset($_POST[$functionData]) && !empty($_POST[$functionData]))
