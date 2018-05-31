@@ -449,8 +449,8 @@ function K_Means(num,typeValue1,typeValue2)
 
 	dataV = {};
 
-	dataV.crit1 = document.getElementById("criterion1");
-	dataV.crit2 = document.getElementById("criterion1");
+	//dataV.crit1 = document.getElementById("criterion1");
+	//dataV.crit2 = document.getElementById("criterion2");
 	dataV.typeValue1 = typeValue1;
 	dataV.typeValue2 = typeValue2;
 	dataV.forLoop = num;
@@ -460,6 +460,7 @@ function K_Means(num,typeValue1,typeValue2)
 	dataV.sha1 = "K_Means";
 
 	console.log("K_Means");
+
 
 	var answer = $.ajax(
 	{
@@ -472,10 +473,11 @@ function K_Means(num,typeValue1,typeValue2)
                     console.log(jqXhr);
                     console.log(textStatus);
                     console.log(errorThrown);
+                    console.log("Ebgale error file")
                 }
 	}).responseJSON;
 
-	alert(answer);
+	//alert(answer);
 		
 		
 	console.log(answer);	

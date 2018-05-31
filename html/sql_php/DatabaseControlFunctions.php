@@ -349,8 +349,8 @@
 		}
 
 		//Brisko tixaia ta kentra
-		$Center1 = rand(0,sizeof($countryArray));
-		while(($Center2 = rand(0,sizeof($countryArray))) == $Center1){}
+		$Center1 = rand(0,sizeof($countryArray)-1);
+		while(($Center2 = rand(0,sizeof($countryArray)-1)) == $Center1){}
 		//.......................
 
 		//Anathesi ton ipolipon xoron stin omada me tin mikroteri apostasi apo to kentro tis
