@@ -8,20 +8,6 @@
 <title>Pornhub</title> 
 <link rel="stylesheet" href="css/custom.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script type="text/javascript">
-			function whichType(event)
-			{
-				//alert("ΔΕΝ ΘΑ ΠΙΣΤΕΨΕΙΣ ΠΙΟ ΟΙΚΙΑΚΟ ΤΡΟΦΙΜΟ ΠΟΥ ΕΧΟΥΜΕ ΣΤΟ ΣΠΙΤΙ ΜΑΣ ΜΠΟΡΕΙ ΝΑ ΑΥΞΗΣΕΙ ΤΟ ΜΕΓΕΘΟΣ ΤΟΥ ΠΕΟΥΣ ΣΟΥ ΚΑΤΑ 10 ΕΚΑΤΟΣΤΑ ΣΕ ΜΟΛΙΣ 14 ΜΕΡΕΣ");
-			}
-			/*function checkChecked(){
-				if(document.getElementById('gender_Male').checked) {
-				  //Male radio button is checked
-				}else if(document.getElementById('gender_Female').checked) {
-				  //Female radio button is checked
-			}*/
-}
-	</script>
-
 <style>
 .fb{
 	padding: 5px;
@@ -45,7 +31,7 @@ fieldset {
   float:left;}
 </style>
 </head>
-	<body onload="whichType(event)">
+	<body>
 		<div id="container">
 			<div id="header">
 				<h1>Pornhub</h1>
@@ -69,7 +55,7 @@ fieldset {
 					<h1>Free porn from every country in the planet</h1>
 					<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 
-					 <form action="#" method="post">
+					 <form action="profil.php" method="post">
 					 <fieldset >
 						<legend style="text-align:center;">Προσωπικά στοιχεία (Register)</legend>
 					  Όνομα:<br>
@@ -93,19 +79,18 @@ fieldset {
 					  
 					  <br><br>
 					  
-					  <input type="button" value="Register" onclick="InsertUserToDb()">
+					  <input type="submit" value="Register" onclick="InsertUserToDb()">
 					  
 					  </fieldset>
 					  
 					</form>   
-					<form  action="#" method="post">  
+					<form  action="country.html" method="post">  
 					  <fieldset>
 						<legend style="text-align:center;">Είσοδος Χρήστη (Sign in)</legend>
 					  Email:<br>
 					  <input type="email" name="email_sign" id="email_sign" required><br>
 					  Κωδικός:<br>
 					  <input type="password" name="pwd_sign" id="pwd_sign" <br>
-					 
 
 					  <br><br><br><br><br><br><br><br><br><br>
 					  <br><div class="fb" style="float:right;">
@@ -113,9 +98,7 @@ fieldset {
 					  Sign in with Facebook
 					  </a>
 					  </div><br>
-					  <input type="submit" value="Sign in" onclick="SignUpUserFromDb()">
-					  					  
-					  
+					  <input type="button" value="Sign in" onclick="SignUpUserFromDb()">
 					  </fieldset>
 					</form> 
 					

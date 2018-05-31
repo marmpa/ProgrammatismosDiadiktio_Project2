@@ -40,6 +40,10 @@ if(str1==str2){
 	}
 	
 }
+function sleep(ms)
+{
+	return new Promise(resolve => setTimeout(resolve,ms));
+}
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -48,27 +52,55 @@ if(str1==str2){
         'packages':['geochart'],
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
-	//K_Means(!!!!!!!!!!!ALLCountries!!!!!!!!!!,5,'Pos_Lati','Pos_Long');
+	var teams = K_Means(5,'Pos_Lati','Pos_Long');
 	google.charts.setOnLoadCallback(drawChart);
-	function drawChart(){	
-	var data = google.visualization.arrayToDataTable([
-        ['City',   'Population', 'Area'],
-        ['Rome',      2761477,    1285.31],
-        ['Milan',     1324110,    181.76],
-      ]);
+	async function drawChart(){
+	teamSplit=[];
+
+	for(var x=0;x<teams.length;x++)
+	{
+		teamSplit[x]=[];
+		teamSplit[x][0]=[];
+
+		var y=0;
+		for(var z=0;z<teams[x][0].length;z++)
+		{
+			teamSplit[x][z] = []
+			teamSplit[x][z][0] = teams[x][0][z][0];
+			teamSplit[x][z][1] = 1;
+			y=z;
+		}
+		y+=1;
+
+		for(var z=0;z<teams[x][1].length;z++)
+		{
+			teamSplit[x][z+y] = []
+			teamSplit[x][z+y][0] = teams[x][1][z][0];
+			teamSplit[x][z+y][1] = 2;
+		}
+
+	}
+
+	for(var x=0;x<teamSplit.length;x++)
+	{
+	var countriesArray = [];
+    countriesArray.push(['Country', 'Team']);
+    countriesArray = countriesArray.concat(teamSplit[x]);
+    console.log(countriesArray);
+	var data = google.visualization.arrayToDataTable(countriesArray);
+
 
       var options = {
-        region: 'IT',
-        displayMode: 'markers',
+      	//displayMode: 'markers',
         colorAxis: {colors: ['green', 'red']}
       };
 
       var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
       chart.draw(data, options);
-	};
-	
-	//var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
+      await sleep(5000);
 	}
+}
+}
 </script>
 </head>
 	<body onload="GetCountryNames()">
@@ -102,7 +134,7 @@ if(str1==str2){
 					  </select><br>
 					  Κέντρο 2:<select id="center2">
 					  </select><br>
-					  <input type="button" value="K-Means search" onclick="K_Means(5,'Pos_Lati','Pos_Long')">
+					  <input type="button" value="K-Means search" onclick="chartCreate()">
 					  </fieldset>
 					</form> 
 					<br>

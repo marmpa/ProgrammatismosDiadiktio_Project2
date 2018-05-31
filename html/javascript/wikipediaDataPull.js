@@ -58,7 +58,7 @@ $.getJSON(site,function(json)
 		var patternPopulationOld = /population_estimate\s=(\s{{.*}})?\s([\d,]*)(<ref.+?\sweb)?\s*\|/i;
 		var patternArea = /area_km2\s=\s(((\d*),?)*)/i;
 		var patternCapital = /capital\s=\s\[+(\w+\s*)+\]+/i;
-		var patternCoordinates = /coordinates\s=\s\{+Coord((\|[\d*\w]*\|*){6})/i;
+		var patternCoordinates = /coordinates\s=\s\{+Coord((\|[\d*\.\w]*\|*){6})/i;
 
 
 		var splittedArray = wikiString.match(patternCoordinates)[1].split('|');
@@ -405,8 +405,12 @@ function SignUpUserFromDb()
 
 	dataV = {};
 
-	dataV.email_sign = document.getElementById("email_sign");
-	dataV.pwd_sign = document.getElementById("pwd_sign");
+	dataV.email = document.getElementById("email_sign").value;
+	dataV.pwd = document.getElementById("pwd_sign").value;
+
+	console.log(dataV.email);
+	console.log(dataV.pwd);
+
 
 	dataV.gini = 5;
 	dataV.type = 3;
@@ -426,9 +430,9 @@ function SignUpUserFromDb()
                     //console.log(textStatus);
                     //console.log(errorThrown);
                 }
-	}).responseJSON;
+	}).responseText;
 
-	alert(answer);
+	//alert(answer);
 		
 		
 	console.log(answer);	
@@ -483,6 +487,7 @@ function K_Means(num,typeValue1,typeValue2)
 	console.log(answer);	
 
 	//document.getElementById("submitForm").submit();
+	return answer;
 }
 
 

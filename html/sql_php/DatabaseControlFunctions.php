@@ -254,9 +254,9 @@
 			die("Connection failed: " . $mysqli->connect_error);
 		}
 
-		echo (str_replace("$","",$_POST['GPD']));
+		//echo (str_replace("$","",$_POST['GPD']));
 
-		$sql = "SELECT COUNT (Name) From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
+		$sql = "SELECT * From Users where email=\"".$_POST['email']."\"";// AND Password=\"".$_POST['pwd']."\"";
 		//$sql = "SELECT * FROM Countries";
 
 
@@ -267,23 +267,11 @@
 		}
 		else
 		{
-			echo "Error " .$sql . "<br>" . $mysqli->error;
+			echo "Error ba " .$sql . "<br>" . $mysqli->error;
 		}
 
 		//To parakato borei na diagrafei *********************************
-		//$sql = "SELECT * FROM Users";
-
-		$result = $mysqli->query($sql);//Calling the query and saving the result
-
-		if($result->num_rows > 0)
-		{
-			while($row = $result->fetch_assoc())
-			{
-				print_r(array_values($row));
-			}
-		}
-
-		$result->free();
+		
 		$mysqli->close();
 	}
 
