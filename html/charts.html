@@ -3,20 +3,15 @@
   <head>
   
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<title>Pornhub</title> 
+	<title>Project 2018 icsd15107-icsd15137</title> 
 	<link rel="stylesheet" href="css/custom.css" type="text/css">
     <script src="jquery/jquery-3.2.1.js"></script>
 	<script src="javascript/wikipediaDataPull.js"></script>
 	<script type="text/javascript">
 		var checkedCountries = [];
 		function insertcountries()
-		{
-			//GetCountryNamesC();
-			
+		{			
 			var Country_Names = GetCountryNamesC();
-
-			console.log(Country_Names);
-			
 			var CL = document.getElementById("countryList");
 			
     		CL.innerHTML = '';
@@ -32,8 +27,6 @@
     <script type="text/javascript">
 	google.charts.load('current', {
         'packages':['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
 	  google.charts.load('current', {'packages':['corechart']});
@@ -57,20 +50,11 @@
 	
 	
 	var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
-	//console.log(countriesAndFeaturesArray[1]);
-	//console.log(countriesAndFeaturesArray.length);
-
 	for(x in countriesAndFeaturesArray)
 	{
 		console.log(x[0]);
 		console.log(x[1]);
 	}
-
-	console.log("giiia sou marakiiii");	
-
-
-
-
 	if(value==0)
 	{
     	google.charts.setOnLoadCallback(drawRegionsMap);
@@ -110,12 +94,7 @@
 	  	countriesArray.push(['Country', str]);
       	countriesArray = countriesArray.concat(countriesAndFeaturesArray);
         var data = google.visualization.arrayToDataTable(countriesArray);
-         /*data.addColumn('string', 'countryName');
-		 data.addColumn('number', 'countryFeature');
-		 data.addRows([
-		*/	  
-		
-		
+
         var options = {
           title: str,
           pieHole: 0.4,
@@ -130,13 +109,7 @@
 	  	countriesArray.push(['Country', str]);
 	  	countriesArray = countriesArray.concat(countriesAndFeaturesArray);
 
-      	
-
         var data = google.visualization.arrayToDataTable(countriesArray);
-        /*data.addColumn('string', 'countryName');
-		data.addColumn('number', 'countryFeature');
-		data.addRows([
-		*/	  
 		
         var options = {
           title: str + ' comparison',
@@ -173,13 +146,12 @@
   </head>
   <body onload="insertcountries()">
 		<div id="header">
-			<h1>Pornhub</h1>
+			<h1>Project 2018 isd15107-icsd15137</h1>
 		</div>
 		<div id="menu">
 				<b>Menu</b>
 				<ul>
 				<li><a href="login.html">Σύνδεση</a></li>
-				<li><a href="profil.php">Προφίλ</a></li>
 				<li><a href="country.html">Επιλογή χώρας</a></li>
 				<li><a href="charts.html">Εμφάνιση γραφημάτων</a></li>
 				</ul>
@@ -190,8 +162,6 @@
 				</ul>
 		</div>
 		<div id="content">
-				<h1>Free porn from every country in the planet</h1>
-				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 				Χώρες<br>
 				<div class="scrollList" id="countryList"></div>
 				<div id="rightElements">
@@ -210,9 +180,7 @@
 				<input type="button" value="Show Chart" onclick="chartCreate()"></div>
 				<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 		</div>
-		<div id="footer">
-					Hungry MILFS needs cock!! Only 100m away..
-		</div>
+		<div id="footer">ICSD15107 - ICSD15137</div>
   </body>
 </html>
 

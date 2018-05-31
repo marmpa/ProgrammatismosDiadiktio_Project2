@@ -12,18 +12,19 @@
 
 	#header {
 	background-color:#009933;
+	height:5%;
 	}
 
 	#menu {
 	background-color:#00ff90;
-	height:700px;
+	height:92%;
 	width:15%;
 	float:left;
 	}
 
 	#content {
 	background-color:#EEEEEE;
-	height:700px;
+	height:92%;
 	width:85%;
 	float:left;
 	}
@@ -31,6 +32,7 @@
 	#footer {
 	background-color:#009933;
 	clear:both;
+	height:3%;
 	text-align:center;
 	}
 
