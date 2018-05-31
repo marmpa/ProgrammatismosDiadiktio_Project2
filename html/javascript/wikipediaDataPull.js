@@ -390,3 +390,39 @@ function K_Means(num,typeValue1,typeValue2,countryList)
 
 	return answer;
 }
+
+function GetFromSession()
+{
+	if(request)
+	{
+		request.abort();
+	}
+	dataV = {};
+	
+
+	dataV.gini = 5;
+	dataV.type = 3;
+	dataV.sha1 = "GetFromSession";
+
+	console.log("GetFromSession");
+
+
+	var answer = $.ajax(
+	{
+		url:'sql_php/DatabaseControlFunctions.php',
+		type:'POST',
+		dataType:"json",
+		data:dataV,
+		async:false,
+       	error: function( jqXhr, textStatus, errorThrown ){
+                    console.log(jqXhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log("Ebgale error file")
+                }
+	}).responseJSON;
+
+	console.log(answer);	
+
+	return answer;
+}
