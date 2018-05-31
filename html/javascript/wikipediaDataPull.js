@@ -200,6 +200,7 @@ function InsertToDB()
 function GetCountryNames()
 {
 	//var Country_Names = Array();
+		document.getElementById("center2").selectedValue = 1;
 		if(request)
 		{
 			request.abort();

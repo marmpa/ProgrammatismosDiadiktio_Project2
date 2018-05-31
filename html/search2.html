@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>Pornhub</title> 
-<link rel="stylesheet" href="css/custom.css" type="text/css">
-<script src="jquery/jquery-3.2.1.js"></script>
-<script src="javascript/wikipediaDataPull.js"></script>
-<script type="text/javascript">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Pornhub</title> 
+	<link rel="stylesheet" href="css/custom.css" type="text/css">
+	<script src="jquery/jquery-3.2.1.js"></script>
+	<script src="javascript/wikipediaDataPull.js"></script>
+	<script type="text/javascript">
 		var checkedCountries = [];
 		function insertcountries()
 		{
@@ -18,159 +18,184 @@
 			
 			var CL = document.getElementById("countryList");
 			
-    		CL.innerHTML = '';
-			 
-	        for (var i = 0; i<Country_Names.length; i++)
-	        {
-	        	CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\"> "+Country_Names[i]+"<br>";
-	        }		
-	    }
-</script>
-<script>
-function criterio1() {
-var x1=document.getElementById("criterion1");
-var x2=document.getElementById("criterion2");
-var str1 = x1.options[x1.selectedIndex].text;
-var str2 = x2.options[x2.selectedIndex].text;
-var value1=document.getElementById("criterion2").selectedIndex;
-if(str1==str2){
-		do{
-			var rand=Math.floor(Math.random()*3);
-		}while(rand==value1);
-		x2.selectedIndex=rand;
-	}
+			CL.innerHTML = '';
 
-}
+			for (var i = 0; i<Country_Names.length; i++)
+			{
+				CL.innerHTML += "<input type=\"checkbox\" id=\"checkbox\" name=\""+Country_Names[i]+"\" value=\""+i+"\"> "+Country_Names[i]+"<br>";
+			}		
+		}
+	</script>
+	<script>
+		function criterio1() {
+			var x1=document.getElementById("criterion1");
+			var x2=document.getElementById("criterion2");
+			var str1 = x1.options[x1.selectedIndex].text;
+			var str2 = x2.options[x2.selectedIndex].text;
+			var value1=document.getElementById("criterion2").selectedIndex;
+			if(str1==str2){
+				do{
+					var rand=Math.floor(Math.random()*3);
+				}while(rand==value1);
+				x2.selectedIndex=rand;
+			}
+
+		}
 
 
-function criterio2() {
-var x1=document.getElementById("criterion1");
-var x2=document.getElementById("criterion2");
-var str1 = x1.options[x1.selectedIndex].text;
-var str2 = x2.options[x2.selectedIndex].text;
-var value1=document.getElementById("criterion1").selectedIndex;
-if(str1==str2){
-		
-		do{
-			var rand=Math.floor(Math.random()*3);
-		}while(rand==value1);
-		x1.selectedIndex=rand;
-	}
-	
-}
-</script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-	  google.charts.load('current', {'packages':['corechart']});
-	function chartCreate()
-	{	
-	var feature1=document.getElementById("criterion1").selectedIndex;
-    var feature2=document.getElementById("criterion1").selectedIndex;
-	var features = ["Area", "Population", "GPD", "HDI", "Gini"];
-	var str1 = features[feature1];
-	var str2 = features[feature2];
-	
-	checkedCountries=[];
-	var countryItems = document.getElementById("countryList").getElementsByTagName("input");
-	        for(var x=0;x<countryItems.length;x++)
-	        {
-	        	if(countryItems[x].checked)
-	        	{
-	        		checkedCountries.push(countryItems[x].name);
-	        	}
-	        }
-	K_Means(10,str1,str2);
-	
-	google.charts.setOnLoadCallback(drawChart);
-	function drawChart(){	
-	var data = google.visualization.arrayToDataTable([
-        ['ID', 'Life Expectancy', 'Fertility Rate', 'Region',     'Population'],
-        ['CAN',    80.66,              1.67,      'North America',  33739900],
-        ['DEU',    79.84,              1.36,      'Europe',         81902307],
-        ['DNK',    78.6,               1.84,      'Europe',         5523095],
-        ['EGY',    72.73,              2.78,      'Middle East',    79716203],
-        ['GBR',    80.05,              2,         'Europe',         61801570],
-        ['IRN',    72.49,              1.7,       'Middle East',    73137148],
-        ['IRQ',    68.09,              4.77,      'Middle East',    31090763],
-        ['ISR',    81.55,              2.96,      'Middle East',    7485600],
-        ['RUS',    68.6,               1.54,      'Europe',         141850000],
-        ['USA',    78.09,              2.05,      'North America',  307007000]
-      ]);
+		function criterio2() {
+			var x1=document.getElementById("criterion1");
+			var x2=document.getElementById("criterion2");
+			var str1 = x1.options[x1.selectedIndex].text;
+			var str2 = x2.options[x2.selectedIndex].text;
+			var value1=document.getElementById("criterion1").selectedIndex;
+			if(str1==str2){
 
-      var options = {
-        title: 'Bubble Chart!',
-        hAxis: {title: 'Countries'},
-        vAxis: {title: 'Features'},
-        bubble: {textStyle: {fontSize: 11}}
-      };
+				do{
+					var rand=Math.floor(Math.random()*3);
+				}while(rand==value1);
+				x1.selectedIndex=rand;
+			}
 
-      var chart = new google.visualization.BubbleChart(document.getElementById('regions_div'));
-      chart.draw(data, options);
-	};
-	//var countriesAndFeaturesArray = GetCountryAndFeatures(checkedCountries,str);
-	}
-</script>
-<style>
-	.scrollList {
-	height:10%;
-    width:30%;
-    overflow:auto;
-	wrap:soft;
-	text-align: left;
-	}
-	
-	#rightElements {
-	position: absolute;
-    right: 15%;
-    top: 20%;
-	}</style>
-</head>
+		}
+	</script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		function sleep(ms)
+		{
+			return new Promise(resolve => setTimeout(resolve,ms));
+		}	
+		google.charts.load('current', {'packages':['corechart']});
+		function chartCreate()
+		{	
+			var feature1=document.getElementById("criterion1").selectedIndex;
+			var feature2=document.getElementById("criterion1").selectedIndex;
+			var features = ["Area", "Population", "GPD", "HDI", "Gini"];
+			var str1 = features[feature1];
+			var str2 = features[feature2];
+
+			checkedCountries=[];
+			var countryItems = document.getElementById("countryList").getElementsByTagName("input");
+			for(var x=0;x<countryItems.length;x++)
+			{
+				if(countryItems[x].checked)
+				{
+					checkedCountries.push(countryItems[x].name);
+				}
+			}
+			var teams = K_Means(10,str1,str2,checkedCountries);
+
+			google.charts.setOnLoadCallback(drawChart);
+			async function drawChart(){
+				teamSplit=[];
+
+				for(var x=0;x<teams.length;x++)
+				{
+					teamSplit[x]=[];
+					teamSplit[x][0]=[];
+
+					var y=0;
+					for(var z=0;z<teams[x][0].length;z++)
+					{
+						teamSplit[x][z] = []
+						teamSplit[x][z][0] = teams[x][0][z][0];
+						teamSplit[x][z][1] = 1;
+						y=z;
+					}
+					y+=1;
+
+					for(var z=0;z<teams[x][1].length;z++)
+					{
+						teamSplit[x][z+y] = []
+						teamSplit[x][z+y][0] = teams[x][1][z][0];
+						teamSplit[x][z+y][1] = 2;
+					}
+
+				}
+				for(var x=0;x<teamSplit.length;x++)
+				{
+					var countriesArray = [];
+					countriesArray.push(['Country', 'Team']);
+					countriesArray = countriesArray.concat(teamSplit[x]);
+					console.log(countriesArray);
+					var data = google.visualization.arrayToDataTable(countriesArray);
+
+
+					var options = {
+						title: 'Bubble Chart!',
+						hAxis: {title: 'Countries'},
+						vAxis: {title: 'Features'},
+						bubble: {textStyle: {fontSize: 11}},
+						colorAxis: {colors: ['green', 'red']}
+					};
+
+					var chart = new google.visualization.BubbleChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
+					await sleep(5000);}
+				}
+			}
+		</script>
+		<style>
+		.scrollList {
+			height:10%;
+			width:30%;
+			overflow:auto;
+			wrap:soft;
+			text-align: left;
+		}
+
+		#rightElements {
+			position: absolute;
+			right: 15%;
+			top: 20%;
+		}</style>
+	</head>
 	<body onload="insertcountries()">
 		<div id="container">
 			<div id="header">
 				<h1>Pornhub</h1>
 			</div>
 			<div id="menu">
-					<b>Menu</b>
-					<ul>
+				<b>Menu</b>
+				<ul>
 					<li><a href="login.html">Σύνδεση</a></li>
 					<li><a href="profil.php">Προφίλ</a></li>
 					<li><a href="country.html">Επιλογή χώρας</a></li>
 					<li><a href="charts.html">Εμφάνιση γραφημάτων</a></li>
-					</ul>
-					<b>Ομαδοποιήσεις</b>
-					<ul>
+				</ul>
+				<b>Ομαδοποιήσεις</b>
+				<ul>
 					<li><a href="search1.html">Βάση γεωργαφικής περιοχής</a></li>
 					<li><a href="search2.html">Βάση άλλων στοιχείων</a></li>
-					</ul>
+				</ul>
 			</div>
 
 			<div id="content">
-					<h1>Free porn from every country in the planet</h1>
-					<p>Enjoy premium 4K videos with only 0.99$ per month</p>
+				<h1>Free porn from every country in the planet</h1>
+				<p>Enjoy premium 4K videos with only 0.99$ per month</p>
 
-					 <form>
-					  <div class="scrollList" id="countryList"></div>
-					  <div id="rightElements">
-					  Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
-					  <option value="criterion11">GDP per capita</option>
-					  <option value="criterion12">HDI (Human Development Index)</option>
-					  <option value="criterion13">Gini Coefficient</option>
-					  </select><br>
-					  Κριτήριο 2:<select id="criterion2" onchange="criterio2()">			  
-					  <option value="criterion21">GDP per capita</option>
-					  <option value="criterion22"selected>HDI (Human Development Index)</option>
-					  <option value="criterion23">Gini Coefficient</option>
-					  </select><br>
-					  <input type="button" value="K-Means search" onclick="chartCreate()">
-					  </div>
-					</form> 
-					<br>
-					<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
+				<form>
+					<div class="scrollList" id="countryList"></div>
+					<div id="rightElements">
+						Κριτήριο 1:<select id="criterion1" onchange="criterio1()">					  
+							<option value="criterion11">GDP per capita</option>
+							<option value="criterion12">HDI (Human Development Index)</option>
+							<option value="criterion13">Gini Coefficient</option>
+						</select><br>
+						Κριτήριο 2:<select id="criterion2" onchange="criterio2()">			  
+							<option value="criterion21">GDP per capita</option>
+							<option value="criterion22"selected>HDI (Human Development Index)</option>
+							<option value="criterion23">Gini Coefficient</option>
+						</select><br>
+						<input type="button" value="K-Means search" onclick="chartCreate()">
+					</div>
+				</form> 
+				<br>
+				<div id="regions_div" style="width: 100%; height: 73.5%;"></div>
 			</div>
 			<div id="footer">
-					Hungry MILFS needs cock!! Only 100m away..
+				Hungry MILFS needs cock!! Only 100m away..
 			</div>
 		</div>
 	</body>
-</html> 
+	</html> 
