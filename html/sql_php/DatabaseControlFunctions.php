@@ -300,26 +300,36 @@
 		}
 		
 		//$sql = "SELECT  From Users where(Email=".$_POST['email']."AND password=".$_POST['pwd_sign'].")";
-		$sql = "SELECT Country_Name,".$_POST['typeValue1'].",".$_POST['typeValue2']." FROM Countries";
+		
 		//".$_POST['typeValue']."
 
 		//assuming 2
 		//prosorina den leitougei.............
-		
-		
+		$sql = '';
 
-		
-
-		//echo gettype($va);
-		/*
-		foreach($va as &$values)
+		if(count($_Post['countryList'])==0)
 		{
-			$sql .= $temp;
-			$sql .= '"'.$values.'"';
-			$temp=',';
+			$sql = "SELECT Country_Name,".$_POST['typeValue1'].",".$_POST['typeValue2']." FROM Countries";
 		}
-		$sql.=")";
-		*/
+		elseif ($_Post['countryList'])>0) 
+		{
+			$temp='';
+		
+			$sql = "SELECT Country_Name,".$_POST['typeValue1'].",".$_POST['typeValue2']." FROM Countries WHERE Country_Name in (";
+
+			$va = $_POST['countryList'];
+
+			//echo gettype($va);
+			foreach($va as &$values)
+			{
+				$sql .= $temp;
+				$sql .= '"'.$values.'"';
+				$temp=',';
+			}
+			$sql.=")";
+		}
+		
+		
 
 		//echo $sql . "pataaaates";
 		if($stmt = $mysqli->prepare($sql))
@@ -337,8 +347,17 @@
 		}
 
 		//Brisko tixaia ta kentra
-		$Center1 = rand(0,sizeof($countryArray)-1);
-		while(($Center2 = rand(0,sizeof($countryArray)-1)) == $Center1){}
+		if(is_string($_Post['center1']) && is_string($_POST['center2']))
+		{
+			$Center1 = rand(0,sizeof($countryArray)-1);
+			while(($Center2 = rand(0,sizeof($countryArray)-1)) == $Center1){}
+		}
+		else
+		{
+			$Center1 = $_Post['center1'];
+			$Center2 = $_POST['center2'];
+		}
+		
 		//.......................
 
 		//Anathesi ton ipolipon xoron stin omada me tin mikroteri apostasi apo to kentro tis
